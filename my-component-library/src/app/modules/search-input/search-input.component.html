@@ -1,0 +1,63 @@
+<tabs>
+  <tab tabTitle="One way">
+      <!--Raw implementation: This will be chnaged to template with proper data binding
+    to be reused in both tabs with flag to turn of return date in one way journey-->
+    <div>
+      <form class="grid grid-pad" name="searchForm" id="ii" >
+          <div class="col-1-2">
+              <div class="form-control float-right">
+                  <input title="Origin"  placeholder="Enter Origin City" id="startPlace" name="startPlace" type="text"/>
+              </div>
+          </div>
+          <div class="col-1-2">
+              <div class="form-control float-left">
+              <input title="Destination"  placeholder="Enter Destination City" id="endPlace" name="endPlace" type="text"/>
+              </div>
+          </div>
+          <div class="col-1-2">
+              <div class="form-control float-right">
+                  <dp-date-picker placeholder="Departure date" #dayPicker></dp-date-picker>
+              </div>
+          </div>
+          <div class="col-1-2">
+              <div class="form-control float-left" >
+                <dp-date-picker placeholder="Return date" #dayPicker></dp-date-picker>
+              </div>
+          </div>
+          <div class="col-1-2">
+                <div class="form-control float-left" >
+                    <select style="width:200px;height:28px;">
+                        <option>Passengers</option>
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                </div>
+            </div>
+          <div class="col-1-2">
+              <div class="form-control float-right">
+                  <button class="btn btn-large btn-normal" title="Provide search details">Search</button>
+              </div>
+          </div>
+         
+      </form>
+  </div>
+  </tab>
+  <tab tabTitle="Return">
+    Return in progress...
+    <div>
+    <ion-range-slider #sliderElement
+          type="double"
+          min="0"
+          max="100"
+          from="28"
+         
+          to="40"
+         
+          grid="true"
+          grid_num="10"
+          prefix="Weight: "
+          postfix=" million pounds"
+          decorate_both="false"
+         ></ion-range-slider></div>
+  </tab>
+<tabs>

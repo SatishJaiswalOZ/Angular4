@@ -22,8 +22,12 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "angular-tabs-component": "^1.0.6",
     "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
+    "ng2-date-picker": "^2.7.4",
+    "ng2-ion-range-slider": "^1.0.3",
+    "ngx-date-picker": "0.0.24",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },

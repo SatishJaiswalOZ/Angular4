@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 // import our module 
 import { HeaderModule } from './modules/header/header.module';
+import { SearchInputModule } from './modules/search-input/search-input.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { HeaderModule } from './modules/header/header.module';
   ],
   imports: [
     BrowserModule,
-    HeaderModule // import it into our @NgModule block
+    HeaderModule,
+    SearchInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
