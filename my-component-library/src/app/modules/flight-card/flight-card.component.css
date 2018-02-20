@@ -1,0 +1,28 @@
+.fc{
+    border:1px solid black; 
+    height:180px;
+    margin-top: 10px;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+.fcInner{
+  font-size:1.5em;
+  float: left;
+}
+.fn{
+    margin-top: 43px;
+}
+.flightName{
+    font-size:0.6em;
+    float: left;
+    width: 100%;
+}
+.OrToDest{
+    font-size:0.8em;
+    float: left; 
+    width: 100%;
+}
+.airlineLogo{
+    width: 130px;
+    height:130px;
+}
