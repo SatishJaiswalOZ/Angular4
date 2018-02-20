@@ -38,26 +38,42 @@
                   <button class="btn btn-large btn-normal" title="Provide search details">Search</button>
               </div>
           </div>
-         
+      </form>
+  </div>
+  <div>
+        <form class="grid grid-pad" name="rangeSearchForm" id="iii" >
+            <div class="col-1-2">
+                <div class="form-control float-right">
+                    <label for="name">Refine flight search</label>
+                    <ion-range-slider #sliderElement
+                    type="double"
+                    min="0"
+                    max="10000"
+                    from="0"
+                    from_min="0"
+                    from_max="30"
+                    from_shadow="true"
+                    to="10000"
+                    to_min="40"
+                    to_max="10000"
+                    to_shadow="true"
+                    grid="true"
+                    grid_num="10"
+                    prefix="Fare: "
+                    postfix=" INR"
+                    decorate_both="false"
+                    (onUpdate)="myOnUpdate($event)"
+                    (onChange)="myOnChange($event)"
+                    (onFinish)="myOnFinish($event)"></ion-range-slider>
+              </div>
+            </div>
       </form>
   </div>
   </tab>
+
   <tab tabTitle="Return">
-    Return in progress...
     <div>
-    <ion-range-slider #sliderElement
-          type="double"
-          min="0"
-          max="100"
-          from="28"
-         
-          to="40"
-         
-          grid="true"
-          grid_num="10"
-          prefix="Weight: "
-          postfix=" million pounds"
-          decorate_both="false"
-         ></ion-range-slider></div>
+     One way template will be reused...
+    </div>
   </tab>
 <tabs>

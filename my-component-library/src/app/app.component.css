@@ -8,6 +8,7 @@
 .sidebar {	
     float: left;
     border:1px solid black;
+    min-width: 310px;
 }
 .main-content {
     border:1px solid black;
