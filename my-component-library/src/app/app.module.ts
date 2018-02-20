@@ -4,6 +4,8 @@ import { AppComponent } from './app.component';
 // import our module 
 import { HeaderModule } from './modules/header/header.module';
 import { SearchInputModule } from './modules/search-input/search-input.module';
+import { FlightCardHeaderModule } from './modules/flight-card-header/flight-card-header.module';
+import { FlightCardModule } from './modules/flight-card/flight-card.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { SearchInputModule } from './modules/search-input/search-input.module';
   imports: [
     BrowserModule,
     HeaderModule,
-    SearchInputModule
+    SearchInputModule,
+    FlightCardHeaderModule,
+    FlightCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
