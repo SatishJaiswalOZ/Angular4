@@ -1,0 +1,9 @@
+.fcHeader{
+    border:1px solid black; 
+    height:80px;
+    padding: 20px;
+}
+.fcInner{
+  font-size:1.5em;
+  float: left;
+}
