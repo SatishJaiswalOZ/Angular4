@@ -9,10 +9,9 @@ export class FlightCardComponent implements OnInit {
 
   @Input()
   flightDetails;
-  
+
   constructor() { }
 
   ngOnInit() {
   }
-
 }

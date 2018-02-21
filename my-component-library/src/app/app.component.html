@@ -1,15 +1,21 @@
 <div class="container">
     <div class="row">
-        <app-header style="width:100%;" header="Flight Search Engine"></app-header>
+        <app-header 
+        class="aheader"
+        header="Flight Search Engine"></app-header>
     </div>
     <div class="row">
         <div class="sidebar col-md-4" >
-            <app-search-input (flightSearchInitiated)="onFlightSearchRequested($event)"></app-search-input>
+            <app-search-input 
+            (flightSearchInitiated)="onFlightSearchRequested($event)">
+        </app-search-input>
         </div>
         <div class="col-md-8 main-content ">
             <app-flight-card-header></app-flight-card-header>
             <div >
-                <app-flight-card *ngFor="let item of flightsearchResult" [flightDetails]="item"></app-flight-card>  
+                <app-flight-card 
+                *ngFor="let item of flightsearchResult" 
+                [flightDetails]="item"></app-flight-card>  
             </div> 
         </div>
     </div>

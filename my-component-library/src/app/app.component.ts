@@ -12,10 +12,13 @@ export class AppComponent {
   flightsearchResult;
 
   constructor(private searchService: SearchService) {
+    //this.searchService.search(this.searchTerm$)
+    //.subscribe(results => {
+    //this.results = results.results;
+    //});
   }
 
   onFlightSearchRequested(form:any):void{
       this.flightsearchResult =   this.searchService.getFlightsDetails(form);
   }
-
 }

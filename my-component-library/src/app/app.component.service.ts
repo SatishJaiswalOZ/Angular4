@@ -10,17 +10,18 @@ import 'rxjs/add/operator/switchMap';
 
 @Injectable()
 export class SearchService {
-  baseUrl: string = 'http://localhost:7878/first';
-  queryUrl: string = '?search=';
   private searchResult = '';
   private mockedApiUrl="http://localhost:7878/first";
 
-  //results: Object;
+  baseUrl: string = 'http://localhost:7878/first';
+  queryUrl: string = '?search=';
+    //results: Object;
   searchTerm$ = new Subject<string>();
   searchResults = [];
 
   constructor(private http:Http) { }
-
+  //TO OPTIMIZE THE LATENCY, INSTEAD OF WHOLE DATA, ONLY QUERY DATA SHOULD BE FETCH.
+  //BELOW SERVICE DOES THE SAME BUT API REQUIRE SERVICE EXPOSURE WITH QUERYSTRING PARAMETER.
   search(terms: Observable<string>) {
     return terms.debounceTime(400)
       .distinctUntilChanged()
@@ -32,7 +33,6 @@ export class SearchService {
         .get(this.baseUrl + this.queryUrl + term)
         .map(res => res.json());
   }
-
 
   getData(){
     return this.http.get(this.mockedApiUrl)
@@ -46,7 +46,8 @@ export class SearchService {
       {
         this.searchResults=[];
       }
-    for (let i = 0; i < data.length; i++) {
+      
+      for (let i = 0; i < data.length; i++) {
       //for now just to check.It will be replaced by actual queryString
       if (data[i].from.toLowerCase( ) == form.from.toLowerCase( ) 
       && data[i].to.toLowerCase( ) == form.to.toLowerCase( ) ) {
