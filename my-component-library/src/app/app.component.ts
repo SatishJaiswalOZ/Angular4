@@ -22,15 +22,17 @@ export class AppComponent {
   private searchResult = '';
   searchResults = [];
   constructor(private http:Http){
-    //constructor(private searchService: SearchService) {
-    console.log('Hi! this is mocked data');
-    this.getFlightsDetails();
-    this.getData();
+  //TO OPTIMIZE THE LATENCY, INSTEAD OF WHOLE DATA, ONLY QUERY DATA SHOULD BE FETCH.
+  //BELOW SERVICE DOES THE SAME BUT API REQUIRE SERVICE EXPOSURE WITH QUERYSTRING PARAMETER.
+  //constructor(private searchService: SearchService) {
+  console.log('Hi! this is mocked data');
+  this.getFlightsDetails();
+  this.getData();
 
-    //this.searchService.search(this.searchTerm$)
-    //.subscribe(results => {
-      //this.results = results.results;
-    //});
+  //this.searchService.search(this.searchTerm$)
+  //.subscribe(results => {
+  //this.results = results.results;
+  //});
   }
 
   getData(){
@@ -52,7 +54,4 @@ export class AppComponent {
     console.log(this.searchResults); 
   })
   }
-
-  
-  
 }
