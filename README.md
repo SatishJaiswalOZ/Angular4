@@ -28,6 +28,8 @@ To run the App:
 
 6.http://localhost:4200/
 
+To run test: npm test
+
 Note: Dev environment for now is limited to Chrome browser only. Not yet tested on other browsers.
 
 Sample JSON used for mocking. Please use "from" & "to" to search flights for now:
@@ -93,7 +95,11 @@ Sample JSON used for mocking. Please use "from" & "to" to search flights for now
 Pending but with same pattern:
 
 1.Slider event firing to instantiate flight search (alike Flight search button with fare filter)
+
 2.Date picker has minor issue in responsive
+
 3.Flight Search header can be populated with same pattern
+
 4.Not all data of same pattern is binded in flight card component as it's the matter of JSON dummy data
+
 5.At some place in UI, templates can be created to reuse the same.
