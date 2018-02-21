@@ -3,18 +3,19 @@
       <!--Raw implementation: This will be chnaged to template with proper data binding
     to be reused in both tabs with flag to turn of return date in one way journey-->
     <div>
-        <form #f="ngForm"  (ngSubmit)="onSubmit(f.value)"  class="ui form">
+        <form [formGroup]="myForm"  
+        (ngSubmit)="onSubmit(myForm.value)"  
+        class="ui form"
+        [class.error]="!myForm.valid && myForm.touched">
      <!--<form class="grid grid-pad" name="searchForm" id="ii" >-->
           <div class="col-1-2">
-              <div class="form-control float-right">
+              <div class="form-control float-right"> 
                   <input
                   title="Origin"  
-                  placeholder="Enter Origin City" 
-                  id="startPlace" 
-                  name="startPlace" 
+                  id="fromInput" 
                   type="text" 
-                  ngModel
-                  />
+                  [formControl]="myForm.controls['from']"/>
+                  <div *ngIf="myForm.controls['from'].hasError('required')"  class="text-danger">[From] is required</div>  
               </div>
           </div>
           <div class="col-1-2">
@@ -22,10 +23,9 @@
               <input 
               title="Destination"  
               placeholder="Enter Destination City" 
-              id="endPlace" 
-              name="endPlace" 
+              id="to" 
               type="text"
-              ngModel/>
+              [formControl]="myForm.controls['to']"/>
               </div>
           </div>
           <div class="col-1-2">
@@ -33,9 +33,8 @@
                   <dp-date-picker 
                   id="ddp" 
                   placeholder="Departure date" 
-                  name="departDp" 
                   #dayPicker 
-                  ngModel
+                  [formControl]="myForm.controls['date']"
                   ></dp-date-picker>
               </div>
           </div>
@@ -44,9 +43,8 @@
                 <dp-date-picker 
                 id="rdp" 
                 placeholder="Return date" 
-                name="returntDp" 
                 #dayPicker
-                ngModel></dp-date-picker>
+                ></dp-date-picker>
               </div>
           </div>
           <div class="col-1-2">
@@ -60,6 +58,8 @@
             </div>
           <div class="col-1-2">
               <div class="form-control float-right">
+                    <div *ngIf="!myForm.valid"  
+                    class="ui error message">Form is invalid</div>
                   <button 
                   class="btn btn-large btn-normal" 
                   title="Provide search details">Search</button>

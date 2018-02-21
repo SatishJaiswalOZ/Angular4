@@ -1,37 +1,50 @@
 import {ElementRef, Component, OnInit, ViewChild } from '@angular/core';
 import {DatePickerComponent} from 'ng2-date-picker';
 import {Http,Response} from '@angular/http';
-//import { SearchService } from './search-input.component.search.service';
+import { SearchService } from './search-input.component.search.service';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import 'ion-rangeslider'
-import * as jQuery from "jquery";
+import { FormBuilder, FormGroup,Validators  } from '@angular/forms';
 
 @Component({
   selector: 'app-search-input',
   templateUrl: './search-input.component.html',
   styleUrls: ['./search-input.component.css'],
-  providers: [/*SearchService*/]
+  providers: [SearchService]
 })
 
 export class SearchInputComponent implements OnInit {
   private inputElem: any;
+  private searchResult = '';
+  private mockedApiUrl="http://localhost:7878/first";
+  myForm: FormGroup;  
+
+  data:any={};
+
+  //results: Object;
+  searchTerm$ = new Subject<string>();
+  searchResults = [];
 
   @ViewChild('dayPicker') datePicker: DatePickerComponent;
   @ViewChild('sliderElement') el:ElementRef;
 
-  constructor(private http:Http){
+  constructor(private http:Http,fb: FormBuilder){
   //TO OPTIMIZE THE LATENCY, INSTEAD OF WHOLE DATA, ONLY QUERY DATA SHOULD BE FETCH.
   //BELOW SERVICE DOES THE SAME BUT API REQUIRE SERVICE EXPOSURE WITH QUERYSTRING PARAMETER.
   //constructor(private searchService: SearchService) {
-  console.log('Hi! this is mocked data');
-  this.getFlightsDetails();
-  this.getData();
+  
+  //this.getFlightsDetails();
+  //this.getData();
 
   //this.searchService.search(this.searchTerm$)
   //.subscribe(results => {
   //this.results = results.results;
   //});
+
+  this.myForm = fb.group({  
+    'from': ['Enter Origin City', Validators.pattern('^[a-zA-Z \-\']+')]  
+  }); 
   }
   ngOnInit() {
     this.inputElem = this.el.nativeElement
@@ -45,15 +58,6 @@ export class SearchInputComponent implements OnInit {
   close() {
        this.datePicker.api.close();
   }
-  private mockedApiUrl="http://localhost:7878/first";
-  data:any={};
-
-  //results: Object;
-  searchTerm$ = new Subject<string>();
-  
- 
-  private searchResult = '';
-  searchResults = [];
 
   getData(){
     return this.http.get(this.mockedApiUrl)
@@ -78,6 +82,8 @@ export class SearchInputComponent implements OnInit {
 
   onSubmit(form: any): void {  
     console.log('you submitted value:', form);  
+     this.getFlightsDetails();
+     this.getData();
   }
 
   private initSlider() {
