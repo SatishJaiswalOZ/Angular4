@@ -7,15 +7,16 @@
         (ngSubmit)="onSubmit(myForm.value)"  
         class="ui form"
         [class.error]="!myForm.valid && myForm.touched">
-     <!--<form class="grid grid-pad" name="searchForm" id="ii" >-->
           <div class="col-1-2">
               <div class="form-control float-right"> 
                   <input
                   title="Origin"  
                   id="fromInput" 
                   type="text" 
+                  name="fromInput"
                   [formControl]="myForm.controls['from']"/>
-                  <div *ngIf="myForm.controls['from'].hasError('required')"  class="text-danger">[From] is required</div>  
+                  <div *ngIf="myForm.controls['from'].hasError('required')"  
+                  class="text-danger">[Origin] is required</div>  
               </div>
           </div>
           <div class="col-1-2">
@@ -25,16 +26,20 @@
               placeholder="Enter Destination City" 
               id="to" 
               type="text"
+              name="toInput"
               [formControl]="myForm.controls['to']"/>
+              <div *ngIf="myForm.controls['to'].hasError('required')"  
+              class="text-danger">[Destination] is required</div>  
               </div>
           </div>
           <div class="col-1-2">
               <div class="form-control float-right">
                   <dp-date-picker 
-                  id="ddp" 
+                  id="ddp"
+                  class="date-picker" 
                   placeholder="Departure date" 
                   #dayPicker 
-                  [formControl]="myForm.controls['date']"
+                  name="dateInput"
                   ></dp-date-picker>
               </div>
           </div>
@@ -42,14 +47,16 @@
               <div class="form-control float-left" >
                 <dp-date-picker 
                 id="rdp" 
+                class="date-picker"
                 placeholder="Return date" 
                 #dayPicker
+                name="dateInput"
                 ></dp-date-picker>
               </div>
           </div>
           <div class="col-1-2">
                 <div class="form-control float-left" >
-                    <select style="width:200px;height:28px;">
+                    <select style="width:100%;height:28px;">
                         <option>Passengers</option>
                         <option>1</option>
                         <option>2</option>
@@ -68,8 +75,7 @@
       </form>
   </div>
   <div>
-       
-            <div class="col-1-2">
+  <div class="col-1-2">
                 <div class="form-control float-right">
                     <label for="name">Refine flight search</label>
                     <ion-range-slider 
@@ -91,15 +97,12 @@
                     grid_num="10"
                     prefix="Fare: "
                     postfix=" INR"
-                    decorate_both="false"
-                  
+                    decorate_both="false"      
                     ></ion-range-slider>
               </div>
             </div>
-  
-  </div>
+    </div>
   </tab>
-
   <tab tabTitle="Return">
     <div>
      One way template will be reused...

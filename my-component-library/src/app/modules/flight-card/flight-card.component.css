@@ -1,9 +1,10 @@
 .fc{
     border:1px solid black; 
-    height:180px;
+    height:auto;
     margin-top: 10px;
     margin-left: 1px;
     margin-right: 1px;
+    background-color:#a1a2a8;
 }
 .fcInner{
   font-size:1.5em;
