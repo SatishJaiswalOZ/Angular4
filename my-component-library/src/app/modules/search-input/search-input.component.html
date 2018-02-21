@@ -3,25 +3,50 @@
       <!--Raw implementation: This will be chnaged to template with proper data binding
     to be reused in both tabs with flag to turn of return date in one way journey-->
     <div>
-      <form class="grid grid-pad" name="searchForm" id="ii" >
+        <form #f="ngForm"  (ngSubmit)="onSubmit(f.value)"  class="ui form">
+     <!--<form class="grid grid-pad" name="searchForm" id="ii" >-->
           <div class="col-1-2">
               <div class="form-control float-right">
-                  <input title="Origin"  placeholder="Enter Origin City" id="startPlace" name="startPlace" type="text"/>
+                  <input
+                  title="Origin"  
+                  placeholder="Enter Origin City" 
+                  id="startPlace" 
+                  name="startPlace" 
+                  type="text" 
+                  ngModel
+                  />
               </div>
           </div>
           <div class="col-1-2">
               <div class="form-control float-left">
-              <input title="Destination"  placeholder="Enter Destination City" id="endPlace" name="endPlace" type="text"/>
+              <input 
+              title="Destination"  
+              placeholder="Enter Destination City" 
+              id="endPlace" 
+              name="endPlace" 
+              type="text"
+              ngModel/>
               </div>
           </div>
           <div class="col-1-2">
               <div class="form-control float-right">
-                  <dp-date-picker placeholder="Departure date" #dayPicker></dp-date-picker>
+                  <dp-date-picker 
+                  id="ddp" 
+                  placeholder="Departure date" 
+                  name="departDp" 
+                  #dayPicker 
+                  ngModel
+                  ></dp-date-picker>
               </div>
           </div>
           <div class="col-1-2">
               <div class="form-control float-left" >
-                <dp-date-picker placeholder="Return date" #dayPicker></dp-date-picker>
+                <dp-date-picker 
+                id="rdp" 
+                placeholder="Return date" 
+                name="returntDp" 
+                #dayPicker
+                ngModel></dp-date-picker>
               </div>
           </div>
           <div class="col-1-2">
@@ -35,17 +60,22 @@
             </div>
           <div class="col-1-2">
               <div class="form-control float-right">
-                  <button class="btn btn-large btn-normal" title="Provide search details">Search</button>
+                  <button 
+                  class="btn btn-large btn-normal" 
+                  title="Provide search details">Search</button>
               </div>
           </div>
       </form>
   </div>
   <div>
-        <form class="grid grid-pad" name="rangeSearchForm" id="iii" >
+       
             <div class="col-1-2">
                 <div class="form-control float-right">
                     <label for="name">Refine flight search</label>
-                    <ion-range-slider #sliderElement
+                    <ion-range-slider 
+                    id="rangeSel"
+                    name="rangeSlider"
+                    #sliderElement
                     type="double"
                     min="0"
                     max="10000"
@@ -62,12 +92,11 @@
                     prefix="Fare: "
                     postfix=" INR"
                     decorate_both="false"
-                    (onUpdate)="myOnUpdate($event)"
-                    (onChange)="myOnChange($event)"
-                    (onFinish)="myOnFinish($event)"></ion-range-slider>
+                  
+                    ></ion-range-slider>
               </div>
             </div>
-      </form>
+  
   </div>
   </tab>
 
