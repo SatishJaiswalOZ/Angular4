@@ -8,10 +8,11 @@
         class="ui form"
         [class.error]="!myForm.valid && myForm.touched">
           <div class="col-1-2">
-              <div class="form-control float-right"> 
+              <div class="form-control float-left"> 
                   <input
                   title="Origin"  
                   id="fromInput" 
+                  placeholder="Origin City" 
                   type="text" 
                   name="fromInput"
                   [formControl]="myForm.controls['from']"/>
@@ -23,7 +24,7 @@
               <div class="form-control float-left">
               <input 
               title="Destination"  
-              placeholder="Enter Destination City" 
+              placeholder="Destination City" 
               id="to" 
               type="text"
               name="toInput"
@@ -32,8 +33,10 @@
               class="text-danger">[Destination] is required</div>  
               </div>
           </div>
+          <!--This can be looped twice with different placeholder n FormControl 
+          to reduce line of code-->
           <div class="col-1-2">
-              <div class="form-control float-right">
+              <div class="form-control float-left">
                   <dp-date-picker 
                   id="ddp"
                   class="date-picker" 
@@ -50,7 +53,7 @@
                 class="date-picker"
                 placeholder="Return date" 
                 #dayPicker
-                name="dateInput"
+                name="rdateInput"
                 ></dp-date-picker>
               </div>
           </div>
@@ -64,7 +67,7 @@
                 </div>
             </div>
           <div class="col-1-2">
-              <div class="form-control float-right">
+              <div class="form-control float-left">
                     <div *ngIf="!myForm.valid"  
                     class="ui error message">Form is invalid</div>
                   <button 
@@ -76,7 +79,7 @@
   </div>
   <div>
   <div class="col-1-2">
-                <div class="form-control float-right">
+                <div class="form-control float-center">
                     <label for="name">Refine flight search</label>
                     <ion-range-slider 
                     id="rangeSel"

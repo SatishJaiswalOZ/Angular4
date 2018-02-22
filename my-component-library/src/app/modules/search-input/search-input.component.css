@@ -1,12 +1,6 @@
 input{
-    width:inherit;
-}
-.date-picker{
     width:100%;
 }
-.dp-input-container{
-    width: inherit ;
-}
-.dp-picker-input{
-    width: 100% !important;
+dp-date-picker{
+    width:100% !important;
 }
