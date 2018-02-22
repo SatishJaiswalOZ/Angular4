@@ -17,18 +17,22 @@ export class SearchInputComponent implements OnInit {
   @ViewChild('dayPicker') datePicker: DatePickerComponent;
   @ViewChild('sliderElement') el:ElementRef;
 
-  constructor(fb: FormBuilder){
-  this.myForm = fb.group({  
-    'from': ['', Validators.required],
-    'to': ['',Validators.required],
-    'dateInput':['',Validators.required]
-  }); 
+  list: any[] = ['1', '2', '3'];
+  edit: any;
+  constructor(private fb: FormBuilder){
+
   }
 
   @Output()
   flightSearchInitiated:EventEmitter<any>=new EventEmitter<any>();
 
   ngOnInit() {
+    this.myForm = this.fb.group({  
+      'from': ['', Validators.required],
+      'to': ['',Validators.required],
+      'dateInput':['',Validators.required]
+    }); 
+ 
     this.inputElem = this.el.nativeElement
     this.initSlider();
   }

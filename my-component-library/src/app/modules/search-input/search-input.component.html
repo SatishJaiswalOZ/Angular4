@@ -9,27 +9,27 @@
         [class.error]="!myForm.valid && myForm.touched">
           <div class="col-1-2">
               <div class="form-control float-left"> 
-                  <input
-                  title="Origin"  
-                  id="fromInput" 
+                  <input  
                   placeholder="Origin City" 
                   type="text" 
-                  name="fromInput"
+                  name="from"
+                  value="from"
+                  alphaOnly
                   [formControl]="myForm.controls['from']"/>
-                  <div *ngIf="myForm.controls['from'].hasError('required')"  
+                  <div *ngIf="myForm.controls['from'].hasError('required')  && myForm.controls['from'].touched"
                   class="text-danger">[Origin] is required</div>  
               </div>
           </div>
           <div class="col-1-2">
               <div class="form-control float-left">
-              <input 
-              title="Destination"  
+              <input  
               placeholder="Destination City" 
-              id="to" 
               type="text"
-              name="toInput"
+              name="to"
+              value="to"
+              alphaOnly
               [formControl]="myForm.controls['to']"/>
-              <div *ngIf="myForm.controls['to'].hasError('required')"  
+              <div *ngIf="myForm.controls['to'].hasError('required') && myForm.controls['to'].touched"  
               class="text-danger">[Destination] is required</div>  
               </div>
           </div>
@@ -37,45 +37,44 @@
           to reduce line of code-->
           <div class="col-1-2">
               <div class="form-control float-left">
-                  <dp-date-picker 
-                  id="ddp"
+                  <dp-date-picker
                   class="date-picker" 
-                  placeholder="Departure date" 
+                  placeholder="Select Departure date" 
                   #dayPicker 
                   name="dateInput"
+                  value="dateInput"
                   [formControl]="myForm.controls['dateInput']"
+                  disabled
                   ></dp-date-picker>
-                  <div *ngIf="myForm.controls['dateInput'].hasError('required')"  
-                  class="text-danger">[Destination] is required</div>  
+                  <div *ngIf="myForm.controls['dateInput'].hasError('required')  && myForm.controls['dateInput'].touched"  
+                  class="text-danger">[Date] is required</div>  
               </div>
           </div>
           <div class="col-1-2" *ngIf="false">
               <div class="form-control float-left" >
                 <dp-date-picker 
-                id="rdp" 
                 class="date-picker"
                 placeholder="Return date" 
                 #dayPicker
                 name="rdateInput"
+                disabled
                 ></dp-date-picker>
               </div>
           </div>
           <div class="col-1-2">
                 <div class="form-control float-left" >
                     <select style="width:100%;height:28px;">
-                        <option>Passengers</option>
-                        <option>1</option>
-                        <option>2</option>
+                        <option  disabled  selected>Passengers</option>
+                        <option *ngFor="let select of list" > {{ select }}</option>
                     </select>
                 </div>
             </div>
           <div class="col-1-2">
               <div class="form-control float-left">
-                    <div *ngIf="!myForm.valid"  
-                    class="ui error message">Form is invalid</div>
                   <button 
                   class="btn btn-large btn-normal" 
-                  title="Provide search details">Search</button>
+                  title="Provide search details"
+                  [disabled]="!myForm.valid">Search</button>
               </div>
           </div>
       </form>

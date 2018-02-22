@@ -20,7 +20,8 @@ export class AppComponent {
   }
 
   onFlightSearchRequested(form:any):void{
+    this.currentSearchdetails = null;
     this.currentSearchdetails = form;
-      this.flightsearchResult =   this.searchService.getFlightsDetails(form);
+    this.flightsearchResult =   this.searchService.getFlightsDetails(form);
   }
 }

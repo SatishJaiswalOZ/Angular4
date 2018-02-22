@@ -6,6 +6,7 @@ import { DpDatePickerModule } from 'ng2-date-picker';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
 import { HttpModule } from '@angular/http';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../../modules/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { FormsModule , ReactiveFormsModule } from '@angular/forms';
     DpDatePickerModule,
     IonRangeSliderModule,
     FormsModule,        
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   declarations: [SearchInputComponent],
   exports: [

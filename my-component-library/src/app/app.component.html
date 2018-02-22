@@ -11,7 +11,8 @@
         </app-search-input>
         </div>
         <div class="col-md-8 main-content ">
-            <app-flight-card-header *ngIf="flightsearchResult?.length > 0" [currentSearchCriteria]="currentSearchdetails"></app-flight-card-header>
+            <app-flight-card-header *ngIf="flightsearchResult?.length > 0; else elseAgeBlock" [currentSearchCriteria]="currentSearchdetails"></app-flight-card-header>
+            <label *ngIf="flightsearchResult?.length == 0">Sorry! No matching flight do exist. Please try with different search criteria.</label>
             <div >
                 <app-flight-card 
                 *ngFor="let item of flightsearchResult" 
