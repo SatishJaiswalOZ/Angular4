@@ -103,3 +103,7 @@ Pending but with same pattern:
 4.Not all data of same pattern is binded in flight card component as it's the matter of JSON dummy data
 
 5.At some place in UI, templates can be created to reuse the same.
+
+KNOWN ISSUES IN EXTERNAL PLUGINS:
+
+1.ng2-datepicker plugin has size issue of it's Input type due to which it's not responsive. If deliberately style=\"width:100%\"  \n is placed at line 1637 of node_modules\ng2-date-picker then it works. I'll check this later to solve if app component level workaround can be done.
