@@ -1,5 +1,5 @@
 # Angular4
-Flight Search Engine
+Flight Search Engine (POC only to demonstrate the Angular 4 (Full Stack) & web development understanding)
 To Start/Config Mocked API:
 
 1. Open mocked-api -> npm install -g apimocker
