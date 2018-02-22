@@ -43,10 +43,13 @@
                   placeholder="Departure date" 
                   #dayPicker 
                   name="dateInput"
+                  [formControl]="myForm.controls['dateInput']"
                   ></dp-date-picker>
+                  <div *ngIf="myForm.controls['dateInput'].hasError('required')"  
+                  class="text-danger">[Destination] is required</div>  
               </div>
           </div>
-          <div class="col-1-2">
+          <div class="col-1-2" *ngIf="false">
               <div class="form-control float-left" >
                 <dp-date-picker 
                 id="rdp" 

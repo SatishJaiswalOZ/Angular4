@@ -10,6 +10,7 @@ import { SearchService } from './app.component.service';
 export class AppComponent {
   title = 'app'; 
   flightsearchResult;
+  currentSearchdetails:any;
 
   constructor(private searchService: SearchService) {
     //this.searchService.search(this.searchTerm$)
@@ -19,6 +20,7 @@ export class AppComponent {
   }
 
   onFlightSearchRequested(form:any):void{
+    this.currentSearchdetails = form;
       this.flightsearchResult =   this.searchService.getFlightsDetails(form);
   }
 }

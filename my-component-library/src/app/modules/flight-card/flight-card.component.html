@@ -1,43 +1,43 @@
 <!--This will further be poptimized to reuse template-->
 
-<div class="row fc ">
+<div class="row fc rounded bg-info text-white">
     <div class="col fcInner">
         <div class="grid grid-pad">
               <div class="col-1-2">
-                  <label for="name">{{flightDetails.fare}}</label>
+                  <label for="name">{{flightDetails.fare |  currency:'INR'}}</label>
               </div>
               <div class="col-1-2">
-                  <label class="flightName"  for="name">AI 202</label>
+                  <label class="lblbg"  for="name">{{flightDetails.flightNum| uppercase}}</label>
               </div>
               <div class="col-1-2">
-                  <label class="OrToDest" for="name">PNQ > DEL</label>
+                  <label class="lblsm" for="ft">{{flightDetails.from | uppercase}} > {{flightDetails.to| uppercase}}</label>
               </div>
               <div class="col-1-2">
-                  <label class="OrToDest" for="name">Depart 10:00 AM</label>
+                  <label class="lblsm" for="dt">Depart : {{flightDetails.departureTime| uppercase}}</label>
               </div>
               <div class="col-1-2">
-                <label class="OrToDest" for="name">Arrive 12:00 PM</label>
+                <label class="lblsm" for="at">Arrive : {{flightDetails.arrivalTime| uppercase}}</label>
               </div>
           </div>
       </div>
-    <div class="col fcInner">
+    <div class="col fcInner" *ngIf="false">
         <div class="grid grid-pad">
             <div class="col-1-2 fn">
-                <label class="flightName"  for="name">AI 203</label>
+                <label class="flightName"  for="name"></label>
             </div>
             <div class="col-1-2">
-                <label class="OrToDest" for="name"> DEL > PNQ</label>
+                <label class="OrToDest" for="name"> </label>
             </div>
             <div class="col-1-2">
-                <label class="OrToDest" for="name">Depart 8:00 PM</label>
+                <label class="OrToDest" for="name"></label>
             </div>
             <div class="col-1-2">
-              <label class="OrToDest" for="name">Arrive 11:00 PM</label>
+              <label class="OrToDest" for="name"></label>
             </div>
         </div>
     </div>
     <div class="col">
-        <div class="grid grid-pad">
+        <div class="grid grid-pad float-right">
             <div class="col-1-2 airlineLogo">
                 <img  class=" rounded" alt="Airline Logo.">
             </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
+import { CurrencyPipe,UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-flight-card',

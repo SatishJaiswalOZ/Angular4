@@ -1,13 +1,13 @@
-<div class="row fcHeader ">
+<div class="row fcHeader rounded">
     <div class="col-8 text-left fcHeaderInner">
-        <label for="name">Pune</label>
-        <label for="name">></label>
-        <label for="name">Delhi</label>
-        <label for="name">></label>
-        <label for="name">Pune</label>
+        <label for="fr">{{currentSearchCriteria.from | uppercase}}</label>
+        <label for="separator">></label>
+        <label for="to">{{currentSearchCriteria.to | uppercase}}</label>
+       <!-- <label for="name">></label>
+        <label for="name">Pune</label>-->
     </div>
     <div class="col-4 fcHeaderInner2">
-      <div><label for="name">Depart : </label><label for="name">1st Jan 2012</label></div>
-      <div><label for="name">Return : </label><label for="name">10th Jan 2012</label></div>
+      <div><label for="dt">Depart : {{ currentSearchCriteria.dateInput | date}}</label></div>
+      <!--<div><label for="name">Return : </label><label for="name">10th Jan 2012</label></div>-->
     </div>
   </div>

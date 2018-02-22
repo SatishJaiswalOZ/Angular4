@@ -20,7 +20,8 @@ export class SearchInputComponent implements OnInit {
   constructor(fb: FormBuilder){
   this.myForm = fb.group({  
     'from': ['', Validators.required],
-    'to': ['',Validators.required]  
+    'to': ['',Validators.required],
+    'dateInput':['',Validators.required]
   }); 
   }
 
