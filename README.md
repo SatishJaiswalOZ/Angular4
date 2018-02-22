@@ -1,5 +1,6 @@
 # Angular4
-Flight Search Engine (POC only to demonstrate the Angular 4 (Full Stack) & web development understanding)
+Flight Search Engine (POC only to demonstrate the Angular 4 (Full Stack) & web development understanding rather then production ready module)
+
 To Start/Config Mocked API:
 
 1. Open mocked-api -> npm install -g apimocker
@@ -36,6 +37,7 @@ Sample JSON used for mocking. Please use "from" & "to" to search flights for now
 
 [
   {
+  
     "id": 0,
     "fare":"9000",
     "flightName": "Kingfisher Goa-Delhi",
@@ -45,6 +47,7 @@ Sample JSON used for mocking. Please use "from" & "to" to search flights for now
     "arrivalTime": "03:30pm",
     "date": "03/20/2016",
     "flightRate": "1500 INR"
+    
   },
   {
     "id": 1,
@@ -98,11 +101,7 @@ Pending but with same pattern:
 
 2.Date picker has minor issue in responsive
 
-3.Flight Search header can be populated with same pattern
-
-4.Not all data of same pattern is binded in flight card component as it's the matter of JSON dummy data
-
-5.At some place in UI, templates can be created to reuse the same.
+3.At some place in UI, templates can be created to reuse the same.
 
 KNOWN ISSUES IN EXTERNAL PLUGINS:
 
