@@ -8,7 +8,7 @@
     "to": "Delhi",
     "departureTime": "02:30pm",
     "arrivalTime": "03:30pm",
-    "date": "12/23/2018"
+    "date": "30/06/2018"
   },
   {
     "id": 1,
@@ -19,7 +19,7 @@
     "to": "Delhi",
     "departureTime": "02:30pm",
     "arrivalTime": "03:30pm",
-    "date": "01/23/2018"
+    "date": "01/01/2018"
   },
   {
     "id": 2,
@@ -30,7 +30,7 @@
     "to": "Thailand",
     "departureTime": "02:05pm",
     "arrivalTime": "03:50am",
-    "date": "17/03/2016"
+    "date": "01/03/2018"
   },
   {
     "id": 3,
@@ -41,7 +41,7 @@
     "to": "Dubai",
     "departureTime": "12:55pm",
     "arrivalTime": "08:15am",
-    "date": "17/03/2016"
+    "date": "17/03/2018"
   },
   {
     "id": 4,
@@ -52,7 +52,7 @@
     "to": "Pune",
     "departureTime": "11:40pm",
     "arrivalTime": "10:15am",
-    "date": "17/03/2016"
+    "date": "17/05/2017"
   },
   {
     "id": 5,
@@ -63,7 +63,7 @@
     "to": "Delhi",
     "departureTime": "03:30pm",
     "arrivalTime": "09:30pm",
-    "date": "03/20/2018"
+    "date": "03/09/2018"
   }
 ]
 

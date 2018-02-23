@@ -54,11 +54,11 @@ export class SearchService {
           {
             //for now just to check.It will be replaced by actual queryString
             //angular-moment / momentjs better for date comparison
-            let collectionDate=new Date(data[i].date);
-            let searchDate=new Date(form.dateInput);
+            let collectionDate=new Date(data[i].date).toLocaleDateString();
+            let searchDate=new Date(form.dateInput).toLocaleDateString();
             if ((data[i].from.toLowerCase( ) == form.from.toLowerCase( )) && 
             (data[i].to.toLowerCase( ) == form.to.toLowerCase( )) &&  
-            (searchDate <= collectionDate && searchDate >=new Date()))  {
+            (searchDate == collectionDate))  {
                 this.searchResult = '';
                 this.searchResult = data[i];
                 this.searchResults.push(this.searchResult);
