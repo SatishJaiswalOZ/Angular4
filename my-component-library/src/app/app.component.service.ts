@@ -53,8 +53,12 @@ export class SearchService {
           for (let i = 0; i < data.length; i++) 
           {
             //for now just to check.It will be replaced by actual queryString
-            if (data[i].from.toLowerCase( ) == form.from.toLowerCase( ) 
-            && data[i].to.toLowerCase( ) == form.to.toLowerCase( ) ) {
+            //angular-moment / momentjs better for date comparison
+            let collectionDate=new Date(data[i].date);
+            let searchDate=new Date(form.dateInput);
+            if ((data[i].from.toLowerCase( ) == form.from.toLowerCase( )) && 
+            (data[i].to.toLowerCase( ) == form.to.toLowerCase( )) &&  
+            (searchDate <= collectionDate && searchDate >=new Date()))  {
                 this.searchResult = '';
                 this.searchResult = data[i];
                 this.searchResults.push(this.searchResult);
