@@ -1,19 +1,9 @@
 # Angular4
 Flight Search Engine (POC only to demonstrate the Angular 4 (Full Stack) & web development understanding rather then production ready module)
 
-To Start/Config Mocked API (currently exist in the same project):
 
-1. Open mocked-api -> npm install -g apimocker
+Important:: It has data dependency on API project that has to be started. Please check ReadMe.md of https://github.com/SatishJaiswalOZ/Mocked-API
 
-2. npm install
-
-3. Go to C:\Users\Satish\AppData\Roaming\npm\node_modules\apimocker & edit config.json to update mockDirectory as "mockDirectory": "[root directory full path]/mocked-api/MockData/FlightDataDummy"
-
-4. In trminal run: apimocker to start the server
-
-5. Check if response is coming via hitting http://localhost:7878/first
-
-6. Service is up now.
 
 To run the App:
 
@@ -29,7 +19,6 @@ To run the App:
 
 6. http://localhost:4200/
 
-To run test: npm test
 
 Note: 
 
@@ -46,3 +35,13 @@ KNOWN ISSUES IN EXTERNAL PLUGINS:
 Sample JSON used for mocking. Please use "from" & "to" to search flights for now:
 
   .\mocked-api\MockData\FlightDataDummy\dummyData.json
+
+TEST & COVERAGE using Angular Cli via Karma:
+
+1. To run test: ng test
+
+    Tests will execute after a build is executed via Karma, and it will automatically watch your files for changes. You can run tests a single time via --watch=false or --single-run.
+
+2. You can run tests with coverage via --code-coverage. The coverage report will be in the coverage/ directory.
+
+3. If you want to inspect how angular cli was configured, generate a project with the angular-cli and execute on the root folder ng eject, that will allow you to see the webpack configuration file.
