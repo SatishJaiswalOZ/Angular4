@@ -43,9 +43,14 @@ export class SearchService {
 
   getFlightsDetails(form:any):any[]
   {
+    if( this.searchResults.length>0)
+    {
+      this.searchResults=[];
+    }
       this.getData().subscribe(data=>
         {
           console.log(data);
+
           for (let i = 0; i < data.length; i++) 
           {
             //for now just to check.It will be replaced by actual queryString
