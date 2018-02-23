@@ -81,28 +81,30 @@
   </div>
   <div>
   <div class="col-1-2">
-                <div class="form-control float-center">
+            <div class="form-control float-center">
                     <label for="name">Refine flight search</label>
                     <ion-range-slider 
                     id="rangeSel"
-                    name="rangeSlider"
                     #sliderElement
                     type="double"
                     min="0"
                     max="10000"
                     from="0"
                     from_min="0"
-                    from_max="30"
+                    from_max="9000"
                     from_shadow="true"
                     to="10000"
-                    to_min="40"
+                    to_min="1000"
                     to_max="10000"
                     to_shadow="true"
                     grid="true"
                     grid_num="10"
                     prefix="Fare: "
                     postfix=" INR"
-                    decorate_both="false"      
+                    decorate_both="false" 
+                    (onUpdate)="update(flightSearchSlider, $event)"
+                    (onChange)="update(flightSearchSlider, $event)"
+                    (onFinish)="finish(flightSearchSlider, $event)"     
                     ></ion-range-slider>
               </div>
             </div>

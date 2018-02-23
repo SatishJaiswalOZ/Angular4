@@ -20,8 +20,18 @@ export class AppComponent {
   }
 
   onFlightSearchRequested(form:any):void{
-    this.currentSearchdetails = null;
     this.currentSearchdetails = form;
-    this.flightsearchResult =   this.searchService.getFlightsDetails(form);
+    if(!form.filterRequested)    {   
+       this.flightsearchResult =   this.searchService.getFlightsDetails(form);
+       return;
+    }
+    if(this.currentSearchdetails)
+    {
+      this.currentSearchdetails={
+        from:form.from,
+        to:form.to,
+        dateInput:form.dateInput}
+    }
+    this.flightsearchResult =   this.searchService.getFareFilteredData(form);
   }
 }

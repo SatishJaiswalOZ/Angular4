@@ -1,7 +1,7 @@
-import {ElementRef, Component, OnInit, ViewChild,Output,EventEmitter } from '@angular/core';
+import {Component, OnInit, ViewChild,Output,EventEmitter } from '@angular/core';
 import {DatePickerComponent} from 'ng2-date-picker';
 import { FormBuilder, FormGroup,Validators  } from '@angular/forms';
-import 'ion-rangeslider'
+import {IonRangeSliderComponent} from "ng2-ion-range-slider";
 
 @Component({
   selector: 'app-search-input',
@@ -15,13 +15,19 @@ export class SearchInputComponent implements OnInit {
   myForm: FormGroup;  
 
   @ViewChild('dayPicker') datePicker: DatePickerComponent;
-  @ViewChild('sliderElement') el:ElementRef;
+  @ViewChild('sliderElement') sliderElement: IonRangeSliderComponent;
+  private formData:any;
 
   list: any[] = ['1', '2', '3'];
   edit: any;
-  constructor(private fb: FormBuilder){
+  min: number = 0;
+  max: number = 10000;
+  flightSearchSlider = {
+    name: "Flight Search Slider", 
+    onUpdate: undefined, 
+    onFinish: undefined};
 
-  }
+  constructor(private fb: FormBuilder){  }
 
   @Output()
   flightSearchInitiated:EventEmitter<any>=new EventEmitter<any>();
@@ -32,9 +38,6 @@ export class SearchInputComponent implements OnInit {
       'to': ['',Validators.required],
       'dateInput':['',Validators.required]
     }); 
- 
-    this.inputElem = this.el.nativeElement
-    this.initSlider();
   }
 
   open() {
@@ -46,26 +49,32 @@ export class SearchInputComponent implements OnInit {
   }
 
   onSubmit(form: any): void {  
+    this.formData=form;
     console.log('you submitted value:', form);  
     //callback to parent component
-     this.flightSearchInitiated.emit(form);
+     this.flightSearchInitiated.emit({
+       from:form.from,
+       to:form.to,
+       dateInput:form.dateInput,
+       filterRequested:false});
   }
 
-  private initSlider() {
-   /* let that = this;
-    (<any>jQuery(this.inputElem))({
-      onStart: function () {
-        console.log('you submitted value1:'); 
-    },
-    onChange: function (a) {
-      console.log('you submitted value2:'); 
-    },
-    onFinish: function () {
-      console.log('you submitted value3:'); 
-    },
-    onUpdate: function () {
-      console.log('you submitted value4:'); 
-    }
-    });*/
+  update(fareSlider, event) {
+    fareSlider.onUpdate = event;
+    console.log("FareSlider updated: From: " + 
+    fareSlider.onUpdate.from + " To: "+ fareSlider.onUpdate.to );
+  }
+
+  finish(fareSlider, event) {
+    fareSlider.onFinish = event;
+    console.log("FareSlider finished: From: " + 
+    fareSlider.onUpdate.from + " To: "+ fareSlider.onUpdate.to );
+    this.flightSearchInitiated.emit({
+      from:this.formData.from,
+      to:this.formData.to,
+      dateInput:this.formData.dateInput,
+      fareFrom:fareSlider.onUpdate.from , 
+      fareUpTo:fareSlider.onUpdate.to,
+      filterRequested:true });
   }
 }

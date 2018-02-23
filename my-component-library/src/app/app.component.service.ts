@@ -18,6 +18,7 @@ export class SearchService {
     //results: Object;
   searchTerm$ = new Subject<string>();
   searchResults = [];
+  fareSearchResults = [];
 
   constructor(private http:Http) { }
   //TO OPTIMIZE THE LATENCY, INSTEAD OF WHOLE DATA, ONLY QUERY DATA SHOULD BE FETCH.
@@ -39,24 +40,49 @@ export class SearchService {
     .map((res:Response)=>res.json())
   }
 
-  getFlightsDetails(form:any):any[]{
-    this.getData().subscribe(data=>{
-      console.log(data);
-      if(this.searchResults.length!=0)
-      {
-        this.searchResults=[];
-      }
+  getFlightsDetails(form:any):any[]
+  {
+      this.getData().subscribe(data=>
+        {
+          console.log(data);
+          if(this.searchResults.length!=0)
+          {
+            this.searchResults=[];
+          }
       
-      for (let i = 0; i < data.length; i++) {
+          for (let i = 0; i < data.length; i++) 
+          {
+            //for now just to check.It will be replaced by actual queryString
+            if (data[i].from.toLowerCase( ) == form.from.toLowerCase( ) 
+            && data[i].to.toLowerCase( ) == form.to.toLowerCase( ) ) {
+                this.searchResult = '';
+                this.searchResult = data[i];
+                this.searchResults.push(this.searchResult);
+            }
+          }
+        })
+        console.log('Search Results: ',this.searchResults);
+        return this.searchResults;
+  }  
+  
+  getFareFilteredData(form:any):any[]
+  {
+    if(this.fareSearchResults.length!=0)
+    {
+      this.fareSearchResults=[];
+    }
+    for (let i = 0; i < this.searchResults.length; i++) 
+    {
       //for now just to check.It will be replaced by actual queryString
-      if (data[i].from.toLowerCase( ) == form.from.toLowerCase( ) 
-      && data[i].to.toLowerCase( ) == form.to.toLowerCase( ) ) {
-          this.searchResult = data[i];
-          this.searchResults.push(this.searchResult);
+      if (Number(this.searchResults[i].fare) >=Number(form.fareFrom) 
+      && Number(this.searchResults[i].fare) <=Number(form.fareUpTo)  ) 
+      {
+          this.searchResult = '';
+          this.searchResult = this.searchResults[i];
+          this.fareSearchResults.push(this.searchResult);
       }
     }
-    console.log(this.searchResults); 
-  })
-  return this.searchResults;
+    console.log('Slider Filtered Results: ',this.fareSearchResults);
+    return this.fareSearchResults;
   }
 }
