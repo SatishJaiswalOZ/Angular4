@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SearchService } from './app.component.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,8 @@ import { SearchService } from './app.component.service';
 })
 export class AppComponent {
   title = 'app'; 
-  flightsearchResult;
-  currentSearchdetails:any;
+  flightsearchResult:any [];
+  currentSearchdetails:any={from:undefined,to:undefined,dateInput:undefined};
 
   constructor(private searchService: SearchService) {
     //this.searchService.search(this.searchTerm$)
@@ -20,18 +21,16 @@ export class AppComponent {
   }
 
   onFlightSearchRequested(form:any):void{
-    this.currentSearchdetails = form;
-    if(!form.filterRequested)    {   
+    if(!form.filterRequested){   
        this.flightsearchResult =   this.searchService.getFlightsDetails(form);
-       return;
     }
-    if(this.currentSearchdetails)
-    {
-      this.currentSearchdetails={
-        from:form.from,
-        to:form.to,
-        dateInput:form.dateInput}
+    else {
+      this.flightsearchResult =   this.searchService.getFareFilteredData(form);
     }
-    this.flightsearchResult =   this.searchService.getFareFilteredData(form);
+
+    this.currentSearchdetails.from = form.from;
+    this.currentSearchdetails.to = form.to;
+    let searchDate: moment.Moment = moment(form.dateInput.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
+    this.currentSearchdetails.dateInput =searchDate.format();
   }
 }

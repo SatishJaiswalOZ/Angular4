@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
+import * as moment from 'moment';
 
 @Injectable()
 export class SearchService {
@@ -45,21 +46,14 @@ export class SearchService {
       this.getData().subscribe(data=>
         {
           console.log(data);
-          if(this.searchResults.length!=0)
-          {
-            this.searchResults=[];
-          }
-      
           for (let i = 0; i < data.length; i++) 
           {
             //for now just to check.It will be replaced by actual queryString
-            //angular-moment / momentjs better for date comparison
-            let collectionDate=new Date(data[i].date).toLocaleDateString();
-            let searchDate=new Date(form.dateInput).toLocaleDateString();
+            let collectionDate: moment.Moment = moment(data[i].date);
+            let searchDate: moment.Moment = moment(form.dateInput.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
             if ((data[i].from.toLowerCase( ) == form.from.toLowerCase( )) && 
             (data[i].to.toLowerCase( ) == form.to.toLowerCase( )) &&  
-            (searchDate == collectionDate))  {
-                this.searchResult = '';
+            (searchDate.format() == collectionDate.format()))  {
                 this.searchResult = data[i];
                 this.searchResults.push(this.searchResult);
             }
@@ -81,7 +75,6 @@ export class SearchService {
       if (Number(this.searchResults[i].fare) >=Number(form.fareFrom) 
       && Number(this.searchResults[i].fare) <=Number(form.fareUpTo)  ) 
       {
-          this.searchResult = '';
           this.searchResult = this.searchResults[i];
           this.fareSearchResults.push(this.searchResult);
       }

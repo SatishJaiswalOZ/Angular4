@@ -57,6 +57,13 @@ export class SearchInputComponent implements OnInit {
        to:form.to,
        dateInput:form.dateInput,
        filterRequested:false});
+
+       this.resetFareFilterSlider("0", "10000")
+  }
+
+  
+  resetFareFilterSlider(from, to) {
+    this.sliderElement.update({from: from, to:to});
   }
 
   update(fareSlider, event) {
