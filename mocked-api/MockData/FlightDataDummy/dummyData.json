@@ -8,6 +8,39 @@
     "to": "Delhi",
     "departureTime": "02:30pm",
     "arrivalTime": "03:30pm",
+    "date": "09/09/2018"
+  },
+  {
+    "id": 0,
+    "fare":"9000",
+    "flightName": "Kingfisher Goa-Delhi",
+    "flightNum": "KG202a",
+    "from": "Goa",
+    "to": "Delhi",
+    "departureTime": "02:30pm",
+    "arrivalTime": "03:30pm",
+    "date": "30/06/2018"
+  },
+  {
+    "id": 0,
+    "fare":"9000",
+    "flightName": "Kingfisher Goa-Delhi",
+    "flightNum": "KG202b",
+    "from": "Goa",
+    "to": "Delhi",
+    "departureTime": "02:30pm",
+    "arrivalTime": "03:30pm",
+    "date": "30/06/2018"
+  },
+  {
+    "id": 0,
+    "fare":"9000",
+    "flightName": "Kingfisher Goa-Delhi",
+    "flightNum": "KG202",
+    "from": "Goa",
+    "to": "Delhi",
+    "departureTime": "02:30pm",
+    "arrivalTime": "03:30pm",
     "date": "30/06/2018"
   },
   {
