@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SearchService } from './app.component.service';
 import * as moment from 'moment';
+import { IfDetails,IfDetailsHeader } from './app.component.if-details';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,8 @@ import * as moment from 'moment';
 })
 export class AppComponent {
   title = 'app'; 
-  flightsearchResult:any [];
-  currentSearchdetails:any={from:undefined,to:undefined,dateInput:undefined};
+  flightsearchResult:IfDetails [];
+  currentSearchdetails:IfDetailsHeader={from:undefined,to:undefined,dateInput:undefined};
 
   constructor(private searchService: SearchService) {
     //this.searchService.search(this.searchTerm$)

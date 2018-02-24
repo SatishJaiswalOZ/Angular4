@@ -13,15 +13,16 @@ import * as moment from 'moment';
 export class SearchService {
   private searchResult = '';
   private mockedApiUrl="http://localhost:7878/first";
+  private searchResults = [];
+  private fareSearchResults = [];
 
   baseUrl: string = 'http://localhost:7878/first';
   queryUrl: string = '?search=';
     //results: Object;
   searchTerm$ = new Subject<string>();
-  searchResults = [];
-  fareSearchResults = [];
 
   constructor(private http:Http) { }
+  
   //TO OPTIMIZE THE LATENCY, INSTEAD OF WHOLE DATA, ONLY QUERY DATA SHOULD BE FETCH.
   //BELOW SERVICE DOES THE SAME BUT API REQUIRE SERVICE EXPOSURE WITH QUERYSTRING PARAMETER.
   search(terms: Observable<string>) {
@@ -50,12 +51,13 @@ export class SearchService {
       this.getData().subscribe(data=>
         {
           console.log(data);
-
+          //data.filter(..) can also be used instead of loop
           for (let i = 0; i < data.length; i++) 
           {
             //for now just to check.It will be replaced by actual queryString
             let collectionDate: moment.Moment = moment(data[i].date);
             let searchDate: moment.Moment = moment(form.dateInput.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
+            
             if ((data[i].from.toLowerCase( ) == form.from.toLowerCase( )) && 
             (data[i].to.toLowerCase( ) == form.to.toLowerCase( )) &&  
             (searchDate.format() == collectionDate.format()))  {
