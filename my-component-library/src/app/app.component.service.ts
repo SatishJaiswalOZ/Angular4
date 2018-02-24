@@ -40,7 +40,7 @@ export class SearchService implements OnInit{
         .map(res => res.json());
   }
 
-  getData(){
+  getData():Observable <IfDetails[]>{
     return this.http.get(this.baseUrl)
     .map((res:Response)=><IfDetails[]>res.json())
   }
