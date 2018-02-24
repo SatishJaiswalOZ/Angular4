@@ -1,4 +1,5 @@
 import { Directive, ElementRef } from '@angular/core';
+
 import { ValidatorBase } from './validator-base';
 
 @Directive({

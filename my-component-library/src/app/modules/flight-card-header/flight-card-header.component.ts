@@ -1,5 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { UpperCasePipe,DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-flight-card-header',
   templateUrl: './flight-card-header.component.html',
@@ -13,5 +14,4 @@ export class FlightCardHeaderComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
