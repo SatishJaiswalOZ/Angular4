@@ -20,6 +20,11 @@ export class AppComponent {
     //});
   }
 
+  //for *ngFor performance enhancements as per best practices.
+  trackbyTupleID(index:number,item:any):string{
+    return item.id;
+  }
+
   onFlightSearchRequested(form:any):void{
     if(!form.filterRequested){   
        this.flightsearchResult =   this.searchService.getFlightsDetails(form);

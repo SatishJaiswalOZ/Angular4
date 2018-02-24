@@ -15,7 +15,7 @@
             <label *ngIf="flightsearchResult?.length == 0">Sorry! No matching flight do exist. Please try with different search criteria.</label>
             <div >
                 <app-flight-card 
-                *ngFor="let item of flightsearchResult" 
+                *ngFor="let item of flightsearchResult;trackBy:trackbyTupleID" 
                 [flightDetails]="item"></app-flight-card>  
             </div> 
         </div>
