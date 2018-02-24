@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable ,OnInit} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import {Http,Response} from '@angular/http';
 import { Subject } from 'rxjs/Subject';
@@ -8,21 +8,24 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import * as moment from 'moment';
+import { IfDetails } from './app.component.if-details';
 
 @Injectable()
-export class SearchService {
-  private searchResult = '';
-  private mockedApiUrl="http://localhost:7878/first";
-  private searchResults = [];
+export class SearchService implements OnInit{
+  private searchResult:IfDetails;
+  private baseUrl:string="http://localhost:7878/first";
+  private searchResults:IfDetails[]=[];
   private fareSearchResults = [];
 
-  baseUrl: string = 'http://localhost:7878/first';
   queryUrl: string = '?search=';
     //results: Object;
   searchTerm$ = new Subject<string>();
 
   constructor(private http:Http) { }
-  
+
+  ngOnInit() {
+  }
+
   //TO OPTIMIZE THE LATENCY, INSTEAD OF WHOLE DATA, ONLY QUERY DATA SHOULD BE FETCH.
   //BELOW SERVICE DOES THE SAME BUT API REQUIRE SERVICE EXPOSURE WITH QUERYSTRING PARAMETER.
   search(terms: Observable<string>) {
@@ -38,13 +41,13 @@ export class SearchService {
   }
 
   getData(){
-    return this.http.get(this.mockedApiUrl)
-    .map((res:Response)=>res.json())
+    return this.http.get(this.baseUrl)
+    .map((res:Response)=><IfDetails[]>res.json())
   }
 
   getFlightsDetails(form:any):any[]
   {
-    if( this.searchResults.length>0)
+    if(this.searchResults && this.searchResults.length>0)
     {
       this.searchResults=[];
     }
