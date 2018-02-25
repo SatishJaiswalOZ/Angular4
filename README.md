@@ -42,6 +42,6 @@ TEST & COVERAGE using Angular Cli via Karma:
 
     Tests will execute after a build is executed via Karma, and it will automatically watch your files for changes. You can run tests a single time via --watch=false or --single-run.
 
-2. You can run tests with coverage via --code-coverage. The coverage report will be in the coverage/ directory.
+2. You can run tests with coverage via --code-coverage. The coverage report will be in the  ./my-component-library/coverage/index.html directory.
 
 3. If you want to inspect how angular cli was configured, generate a project with the angular-cli and execute on the root folder ng eject, that will allow you to see the webpack configuration file.
