@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FlightCardComponent } from './flight-card.component';
 
 describe('FlightCardComponent', () => {
@@ -8,7 +9,8 @@ describe('FlightCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FlightCardComponent ]
+      declarations: [ FlightCardComponent ],
+      imports: [CommonModule]
     })
     .compileComponents();
   }));

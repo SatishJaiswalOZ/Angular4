@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -8,7 +9,10 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      declarations: [ HeaderComponent ],
+      imports: [
+        CommonModule
+      ]
     })
     .compileComponents();
   }));

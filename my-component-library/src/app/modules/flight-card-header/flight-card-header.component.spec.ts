@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FlightCardHeaderComponent } from './flight-card-header.component';
 
 describe('FlightCardHeaderComponent', () => {
@@ -8,7 +9,10 @@ describe('FlightCardHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FlightCardHeaderComponent ]
+      declarations: [ FlightCardHeaderComponent ],
+      imports: [
+        CommonModule
+      ]
     })
     .compileComponents();
   }));

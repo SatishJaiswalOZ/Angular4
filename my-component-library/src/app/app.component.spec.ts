@@ -1,11 +1,27 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+// import our module 
+import { HeaderModule } from './modules/header/header.module';
+import { SearchInputModule } from './modules/search-input/search-input.module';
+import { FlightCardHeaderModule } from './modules/flight-card-header/flight-card-header.module';
+import { FlightCardModule } from './modules/flight-card/flight-card.module';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
       ],
+      imports: [
+        BrowserModule,
+        HeaderModule,
+        SearchInputModule,
+        FlightCardHeaderModule,
+        FlightCardModule
+      ]
     }).compileComponents();
   }));
   it('should create the app', async(() => {
@@ -16,15 +32,7 @@ describe('AppComponent', () => {
   it(`should have as title 'app'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
-  }));
-
-  //This is now a negative test as the nativeElement is updated
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
+    expect(app.title).toEqual('Flight Search Engine');
   }));
 
   //Need optimization

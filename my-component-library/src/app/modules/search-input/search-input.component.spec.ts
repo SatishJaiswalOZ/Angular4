@@ -1,5 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TabModule } from 'angular-tabs-component';
+import { HttpModule } from '@angular/http';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 
+import { DpDatePickerModule } from 'ng2-date-picker';
+import { IonRangeSliderModule } from "ng2-ion-range-slider";
+import { SharedModule } from '../../modules/shared/shared.module';
 import { SearchInputComponent } from './search-input.component';
 
 describe('SearchInputComponent', () => {
@@ -8,7 +16,17 @@ describe('SearchInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchInputComponent ]
+      declarations: [ SearchInputComponent ],
+      imports: [
+        HttpModule,
+        CommonModule,
+        TabModule,
+        DpDatePickerModule,
+        IonRangeSliderModule,
+        FormsModule,        
+        ReactiveFormsModule,
+        SharedModule
+      ]
     })
     .compileComponents();
   }));

@@ -1,4 +1,4 @@
-import { AlphaOnlyDirective } from './validator.directive';
+/*import { AlphaOnlyDirective } from './validator.directive';
 import { ElementRef } from '@angular/core';
 
 describe('AlphaOnlyDirective', () => {
@@ -6,4 +6,4 @@ describe('AlphaOnlyDirective', () => {
    // const directive = new AlphaOnlyDirective();
    // expect(directive).toBeTruthy();
   });
-});
+});*/
