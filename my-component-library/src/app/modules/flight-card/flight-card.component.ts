@@ -9,7 +9,7 @@ import { CurrencyPipe,UpperCasePipe } from '@angular/common';
 export class FlightCardComponent implements OnInit {
 
   @Input()
-  flightDetails;
+  flightDetails:any={};
 
   constructor() { }
 

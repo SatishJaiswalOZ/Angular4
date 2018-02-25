@@ -8,7 +8,7 @@ import { UpperCasePipe,DatePipe } from '@angular/common';
 })
 export class FlightCardHeaderComponent implements OnInit {
   @Input()
-  currentSearchCriteria:any;
+  currentSearchCriteria:any={};
   
   constructor() { }
 

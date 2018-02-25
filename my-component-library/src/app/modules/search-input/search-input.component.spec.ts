@@ -40,4 +40,14 @@ describe('SearchInputComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+  
+  it('should have default values', () => {
+    expect(component.min).toEqual(0);
+    expect(component.max).toEqual(10000);
+    expect(component.flightSearchSlider.name).toEqual("Flight Search Slider");
+  });
 });
