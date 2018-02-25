@@ -34,9 +34,9 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('Flight Search Engine');
   }));
-/*
+
   //Will not run because of service api
-  it('should return count 0 from service without queryString', async(() => {
+  it('should return count 0 from service as a negative test though actual result is 3', (() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const app = fixture.debugElement.componentInstance;
@@ -44,9 +44,12 @@ describe('AppComponent', () => {
     const  form: any = {
             from: 'goa',
             to: 'delhi',
-            dateInput:"30/06/2018"}
-  // app.onFlightSearchRequested(form);
-   //apimocker should be running
-   // expect(app.flightsearchResult.length>2);
-  }));*/
+            dateInput:"30-06-2018",
+            filterRequested:false}
+
+    app.onFlightSearchRequested(form);
+   
+    //negative test. To test if the call is asynch.
+    expect(app.flightsearchResult.length).toEqual(0);
+  }));
 });
