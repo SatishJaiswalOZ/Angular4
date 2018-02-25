@@ -43,8 +43,10 @@ describe('AppComponent', () => {
 
     const  form: any = {
             from: 'goa',
-            to: 'delhi'}
+            to: 'delhi',
+            dateInput:"30/06/2018"}
+   app.getFlightsDetails(form);
    //apimocker should be running
-    expect(app.getFlightsDetails().length.toEqual(2));
+    expect(app.flightsearchResult.length==2);
   }));
 });
