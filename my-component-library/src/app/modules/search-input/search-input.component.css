@@ -4,3 +4,7 @@ input{
 dp-date-picker{
     width:100% !important;
 }
+.btn-responsive {
+    width:50%;
+    font-size: 4.5vw;
+}
