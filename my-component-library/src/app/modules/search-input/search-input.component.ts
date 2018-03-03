@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 //app specific.
 import { IonRangeSliderComponent } from "ng2-ion-range-slider";
@@ -14,7 +14,7 @@ const moment = momentNs;
   providers: []
 })
 
-export class SearchInputComponent implements OnInit {
+export class SearchInputComponent implements OnInit, OnDestroy {
 
   @ViewChild('sliderElement') sliderElement: IonRangeSliderComponent;
 
@@ -67,7 +67,7 @@ export class SearchInputComponent implements OnInit {
        isOneWay:this.isOneWay,
        personSelect:form.personSelect});
 
-       this.resetFareFilterSlider("0", "10000")
+       this.resetFareFilterSlider("0", "70000")
   }
 
   
@@ -94,5 +94,11 @@ export class SearchInputComponent implements OnInit {
       fareUpTo:fareSlider.onUpdate.to,
       filterRequested:true,
       isOneWay:this.isOneWay });
+  }
+
+  ngOnDestroy() {
+    //lets hv some cleaning.
+    this.flightSearchInitiated.unsubscribe();
+    this.list = null;
   }
 }

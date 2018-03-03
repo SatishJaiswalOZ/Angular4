@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 //app specific.
 import { SearchService } from './app.component.service';
 import * as moment from 'moment';
 import { IfDetails, IfDetailsHeader } from './app.component.if-details';
 import { TabsContainer } from 'angular-tabs-component';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +12,11 @@ import { TabsContainer } from 'angular-tabs-component';
   styleUrls: ['./app.component.css'],
   providers:[SearchService]
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   private fareSearchResults = [];
   private tempOriginalSearchResults = [];
   private searchResult:IfDetails;
+  private dataSubscriber:Subscription;
  
   title = 'Flight Search Engine'; 
   flightsearchResult:IfDetails []=[];
@@ -72,7 +74,7 @@ export class AppComponent {
       this.tempOriginalSearchResults=[];
       this.flightsearchResult=[];
     }
-      this.searchService.getData().subscribe(data=>
+    this.dataSubscriber = this.searchService.getData().subscribe(data=>
         {
           console.log(data);
           //data.filter(..) can also be used instead of loop
@@ -143,5 +145,19 @@ export class AppComponent {
   private getConvertedDateFormat(inputDate:any):moment.Moment
   {
     return  moment(inputDate.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
+  }
+
+  
+  ngOnDestroy() {
+    //lets hv some cleaning.
+    this.dataSubscriber.unsubscribe();
+    this.fareSearchResults = null;
+    this.tempOriginalSearchResults = null;
+    //shallow reference if any
+    for(let fdetail in this.flightsearchResult)
+    {
+      fdetail=null;
+    }
+    this.flightsearchResult=null;
   }
 }

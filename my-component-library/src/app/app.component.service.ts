@@ -10,9 +10,11 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/Observable/throw';
 import { IfDetails } from './app.component.if-details';
+//TODO: For later version, resolver can be used to support "Wait for data before rendering views"
+//import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
 
 @Injectable()
-export class SearchService{
+export class SearchService {
   private baseUrl:string="http://localhost:7878/first";
 
   queryUrl: string = '?search=';
