@@ -19,6 +19,16 @@ To run the App:
 
 6. http://localhost:4200/
 
+To get ready for production:
+
+1. ng build --prod --aot
+
+2. npm install http-server -g
+
+3. Run production build using http-server ./dist
+
+4. Hit http://127.0.0.1:8080/ OR the url provided in the terminal of http-server
+
 
 Note: 
 
