@@ -8,7 +8,7 @@
                     <input  
                         placeholder="Origin City" 
                         type="text" 
-                        alphaOnly
+                        appAlphaOnly
                         formControlName="origin"/>
                     <div *ngIf="myForm.controls['origin'].errors?.required 
                             && myForm.controls['origin'].touched"
@@ -21,7 +21,7 @@
                     <input  
                         placeholder="Destination City" 
                         type="text"
-                        alphaOnly
+                        appAlphaOnly
                         formControlName="destination"/>
                     <div *ngIf="myForm.controls['destination'].errors?.required 
                             && myForm.controls['destination'].touched"

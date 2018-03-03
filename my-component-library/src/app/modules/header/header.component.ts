@@ -5,9 +5,9 @@ import { Component, Input, Output  } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent{
+export class HeaderComponent {
 
   constructor() {}
 
-  @Input() header: string = 'Flight Search Engine';
+  @Input() header = 'Flight Search Engine';
 }

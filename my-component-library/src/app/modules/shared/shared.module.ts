@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AlphaOnlyDirective,NumberOnlyDirective } from './validator.directive';
+import { AlphaOnlyDirective, NumberOnlyDirective } from './validator.directive';
 
 @NgModule({
     declarations: [
@@ -11,4 +11,5 @@ import { AlphaOnlyDirective,NumberOnlyDirective } from './validator.directive';
         NumberOnlyDirective
     ]
 })
-export class SharedModule{}
+export class SharedModule {}
+

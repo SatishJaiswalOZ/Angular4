@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-//app specific.
+// app specific.
 import { FlightCardComponent } from './flight-card.component';
 
 @NgModule({

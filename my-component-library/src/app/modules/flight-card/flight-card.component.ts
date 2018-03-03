@@ -9,10 +9,10 @@ import { CurrencyPipe, UpperCasePipe } from '@angular/common';
 export class FlightCardComponent {
 
   @Input()
-  flightDetails:any={};
+  flightDetails: any = {};
 
   @Input()
-  isOneWay:boolean=true;
+  isOneWay = true;
 
   constructor() { }
 }

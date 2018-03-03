@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-//app specific.
+// app specific.
 import { HeaderModule } from './modules/header/header.module';
 import { SearchInputModule } from './modules/search-input/search-input.module';
 import { FlightCardHeaderModule } from './modules/flight-card-header/flight-card-header.module';

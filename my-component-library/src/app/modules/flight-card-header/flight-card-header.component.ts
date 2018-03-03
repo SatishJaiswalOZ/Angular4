@@ -6,9 +6,9 @@ import { UpperCasePipe, DatePipe } from '@angular/common';
   templateUrl: './flight-card-header.component.html',
   styleUrls: ['./flight-card-header.component.css']
 })
-export class FlightCardHeaderComponent{
+export class FlightCardHeaderComponent {
   @Input()
-  currentSearchCriteria:any={};
-  
+  currentSearchCriteria: any = {};
+
   constructor() {}
 }

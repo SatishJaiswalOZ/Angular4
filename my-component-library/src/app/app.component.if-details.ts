@@ -23,9 +23,9 @@ export interface ReturnDetails {
 }
 
 export interface IfDetailsHeader {
-    origin: string,
-    destination:string,
-    departureDate: string,
-    returnDate:string,
-    isOneWay:boolean;
+    origin: string;
+    destination: string;
+    departureDate: string;
+    returnDate: string;
+    isOneWay: boolean;
 }
