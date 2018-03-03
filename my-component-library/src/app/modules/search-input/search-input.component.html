@@ -38,9 +38,6 @@
                         formControlName="departureDate"
                         disabled>
                     </dp-date-picker>
-                    <div *ngIf="myForm.controls['departureDate'].errors?.required && myForm.controls['departureDate'].touched"  
-                        class="text-danger">[Departure Date] is required.
-                    </div>
                 </div>
             </div>
             <div class="col-1-2" *ngIf="!isOneWay">
@@ -52,18 +49,15 @@
                         formControlName="returnDate"
                         disabled>
                     </dp-date-picker>
-                    <div *ngIf="myForm.controls['returnDate'].errors?.required && myForm.controls['returnDate'].touched"  
-                        class="text-danger">[Return Date] is required.
-                    </div>
                 </div>
             </div>
             <div class="col-1-2">
                 <div class="form-control float-left" >
                     <!--for now count is uptu 3 only but number picker can 
                         be used to select passenger count-->
-                    <select class="pSelect">
-                        <option  disabled  selected>Passengers</option>
-                        <option *ngFor="let select of list">{{ select }}</option>
+                    <select class="pSelect" formControlName="personSelect" >
+                        <option  selected value="">Passengers</option>
+                        <option *ngFor="let select of list" [ngValue]="select">{{ select }}</option>
                     </select>
                 </div>
             </div>

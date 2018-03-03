@@ -14,7 +14,7 @@ import { DatePickerComponent } from 'ng2-date-picker';
 export class SearchInputComponent implements OnInit {
 
   @ViewChild('sliderElement') sliderElement: IonRangeSliderComponent;
-  
+
   private inputElem: any;
   private formData:any;
 
@@ -40,7 +40,8 @@ export class SearchInputComponent implements OnInit {
     let group = {  
       'origin': ['', Validators.required],
       'destination': ['',Validators.required],
-      'departureDate':['',Validators.required]
+      'departureDate':['',Validators.required],
+      'personSelect':['',Validators.required]
     }
     if(!this.isOneWay){
       group['returnDate'] = ['', Validators.required];
@@ -58,7 +59,8 @@ export class SearchInputComponent implements OnInit {
        departureDate:form.departureDate,
        returnDate:form.returnDate,
        filterRequested:false,
-       isOneWay:this.isOneWay});
+       isOneWay:this.isOneWay,
+       personSelect:form.personSelect});
 
        this.resetFareFilterSlider("0", "10000")
   }

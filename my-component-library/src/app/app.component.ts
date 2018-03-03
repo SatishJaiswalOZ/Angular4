@@ -38,6 +38,9 @@ export class AppComponent {
     return item.id;
   }
 
+   /*
+  @form: search criteria.
+  */
   onFlightSearchRequested(form:any):void{
     if(!form.filterRequested){   
        this.getFlightsDetails(form);
@@ -49,19 +52,20 @@ export class AppComponent {
     this.currentSearchdetails.origin = form.origin;
     this.currentSearchdetails.destination = form.destination;
     this.currentSearchdetails.isOneWay=form.isOneWay;
-
-    //TODO:put these 2 lines in some utility.
-    let departureDate: moment.Moment = moment(form.departureDate.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
+    let departureDate: moment.Moment =this.getConvertedDateFormat(form.departureDate); 
     this.currentSearchdetails.departureDate =departureDate.format();
+
     if(!form.isOneWay)
     {
-      let returnDate: moment.Moment =moment(form.returnDate.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
+      let returnDate: moment.Moment =this.getConvertedDateFormat(form.returnDate);
       this.currentSearchdetails.returnDate =returnDate.format();
     }
   }
 
-  
-  getFlightsDetails(form:any)
+  /*
+  @form: search criteria.
+  */
+  private getFlightsDetails(form:any)
   {
     if(this.tempOriginalSearchResults && this.tempOriginalSearchResults.length>0)
     {
@@ -75,19 +79,21 @@ export class AppComponent {
           for (let i = 0; i < data.length; i++) 
           {
             //for now just to check.It will be replaced by actual queryString.
-            //Also, these conversion can be pushed to utility
             let collectionDepartureDate: moment.Moment = moment(data[i].departDetails.departureDate);
-            let searchDepartureDate: moment.Moment = moment(form.departureDate.replace
-              (/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
+            let searchDepartureDate: moment.Moment = this.getConvertedDateFormat(form.departureDate);
 
             let collectionReturnDate: moment.Moment = !form.isOneWay? moment(data[i].returnDetails.returnDate): undefined;
-            let searchReturnDate: moment.Moment =!form.isOneWay ? moment(form.returnDate.replace
-              (/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3")):undefined;
+            let searchReturnDate: moment.Moment =!form.isOneWay ? this.getConvertedDateFormat(form.returnDate): undefined;
 
-            if ((data[i].departDetails.origin.toLowerCase( ) == form.origin.toLowerCase( )) && 
-            (data[i].departDetails.destination.toLowerCase( ) == form.destination.toLowerCase( )) &&  
-            (searchDepartureDate.format() == collectionDepartureDate.format()) &&
-            (form.isOneWay ? true: searchReturnDate.format()==collectionReturnDate.format()))  {
+            if (
+              (data[i].departDetails.origin.toLowerCase( ) == form.origin.toLowerCase( )) && 
+              (data[i].departDetails.destination.toLowerCase( ) == form.destination.toLowerCase( )) &&  
+              (searchDepartureDate.format() == collectionDepartureDate.format()) &&
+              (form.isOneWay ? true: searchReturnDate.format()==collectionReturnDate.format()))  {
+                //fare calculation for single or return journey & persons selected.
+                data[i].fare = form.isOneWay? String((+data[i].fare) * (+form.personSelect)):
+                                String((+data[i].fare) * (+form.personSelect)*2);
+                
                 this.searchResult = data[i];
                 this.flightsearchResult.push(this.searchResult);
             }
@@ -95,12 +101,19 @@ export class AppComponent {
           //keep a copy for filter search
           this.tempOriginalSearchResults= this.flightsearchResult
         },
-        (error)=>{this.statusMessage='Ooops! Data fetching issues. Please try later.'},
-        ()=>{ this.flightsearchResult.length==0?this.statusMessage='Sorry! No Flights for the choosen criteria.':this.statusMessage=''; })
-        console.log('Search Results: ',this.flightsearchResult);
+        (error)=>{
+          this.statusMessage='Ooops! Data fetching issues. Please try later.'
+        },
+        ()=>{ 
+          this.flightsearchResult.length==0 ? this.statusMessage='Sorry! No Flights for the choosen criteria.':this.statusMessage=''; 
+        })
+        console.log('Search Results: ', this.flightsearchResult);
   }  
   
-  getFareFilteredData(form:any)
+   /*
+  @form: last search result.
+  */
+  private getFareFilteredData(form:any)
   {
     if(this.fareSearchResults.length!=0)
     {
@@ -118,8 +131,17 @@ export class AppComponent {
     }
     console.log('Slider Filtered Results: ',this.fareSearchResults);
     this.flightsearchResult = this.fareSearchResults;
+
     this.flightsearchResult.length==0?
-      this.statusMessage='Sorry! No matching flight do exist. Please try with different fare range.':
+      this.statusMessage='Sorry! No matching flight do exist. Please try with different fare range.': 
       this.statusMessage='';
+  }
+
+   /*
+  @inputDate: date to be formatted.
+  */
+  private getConvertedDateFormat(inputDate:any):moment.Moment
+  {
+    return  moment(inputDate.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
   }
 }

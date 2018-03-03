@@ -46,7 +46,8 @@ describe('AppComponent', () => {
             destination: 'delhi',
             departureDate:"30-06-2018",
             filterRequested:false,
-            isOneWay:true}
+            isOneWay:true,
+            personSelect:1}
 
     app.onFlightSearchRequested(form);
    

@@ -9,7 +9,9 @@ dp-date-picker{
 }
 .btn-responsive {
     width:100%;
-    font-size: 4.5vw;
+    font-size: 1.5rem;
+    max-height:40px;
+    padding: 2px;
 }
 .pSelect{
     width:100%;
