@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 //app specific.
 import { IonRangeSliderComponent } from "ng2-ion-range-slider";
 import { DatePickerComponent } from 'ng2-date-picker';
+import * as momentNs from 'moment';
+import { Moment } from 'moment';
+const moment = momentNs;
 
 @Component({
   selector: 'app-search-input',
@@ -21,7 +24,7 @@ export class SearchInputComponent implements OnInit {
   @Input()
   isOneWay:boolean=false;
   myForm: FormGroup;  
-
+  validationMinDate:Moment;
   list: any[] = ['1', '2', '3'];
   edit: any;
   min: number = 0;
@@ -40,11 +43,13 @@ export class SearchInputComponent implements OnInit {
     let group = {  
       'origin': ['', Validators.required],
       'destination': ['',Validators.required],
-      'departureDate':['',Validators.required],
+      'departureDate':['', Validators.required],
       'personSelect':['',Validators.required]
     }
     if(!this.isOneWay){
-      group['returnDate'] = ['', Validators.required];
+      group['returnDate'] = ['', [ Validators.required, control => this.validationMinDate && 
+        moment(control.value).isBefore(this.validationMinDate) ? {minDate: 'minDate Invalid'} : undefined
+      ]];
     }
     this.myForm = this.fb.group(group);  
   }

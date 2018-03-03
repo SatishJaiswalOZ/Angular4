@@ -36,7 +36,8 @@
                         placeholder="Departure date" 
                         #dayPicker 
                         formControlName="departureDate"
-                        disabled>
+                        disabled
+                        [(ngModel)]="validationMinDate">
                     </dp-date-picker>
                 </div>
             </div>
@@ -47,8 +48,12 @@
                         placeholder="Return date" 
                         #returnDayPicker
                         formControlName="returnDate"
-                        disabled>
+                        disabled
+                        [minDate]="validationMinDate">
                     </dp-date-picker>
+                    <div *ngIf="myForm.controls['returnDate'].errors?.minDate"
+                            class="text-danger">Enter date after [Departure date].
+                    </div>
                 </div>
             </div>
             <div class="col-1-2">
