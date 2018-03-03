@@ -1,118 +1,109 @@
-<tabs>
-  <tab tabTitle="One way">
-      <!--Raw implementation: This will be chnaged to template with proper data binding
-    to be reused in both tabs with flag to turn of return date in one way journey-->
-    <div>
-        <form [formGroup]="myForm"  
+<div>
+    <form [formGroup]="myForm"  
         (ngSubmit)="onSubmit(myForm.value)"  
         class="ui form"
         [class.error]="!myForm.valid && myForm.touched">
           <div class="col-1-2">
               <div class="form-control float-left"> 
-                  <input  
-                  placeholder="Origin City" 
-                  type="text" 
-                  name="from"
-                  value="from"
-                  alphaOnly
-                  [formControl]="myForm.controls['from']"/>
-                  <div *ngIf="myForm.controls['from'].hasError('required')  && myForm.controls['from'].touched"
-                  class="text-danger">[Origin] is required</div>  
+                    <input  
+                        placeholder="Origin City" 
+                        type="text" 
+                        alphaOnly
+                        formControlName="origin"/>
+                    <div *ngIf="myForm.controls['origin'].errors?.required 
+                            && myForm.controls['origin'].touched"
+                            class="text-danger">[Origin] is required.
+                    </div>
               </div>
           </div>
           <div class="col-1-2">
-              <div class="form-control float-left">
-              <input  
-              placeholder="Destination City" 
-              type="text"
-              name="to"
-              value="to"
-              alphaOnly
-              [formControl]="myForm.controls['to']"/>
-              <div *ngIf="myForm.controls['to'].hasError('required') && myForm.controls['to'].touched"  
-              class="text-danger">[Destination] is required</div>  
-              </div>
-          </div>
-          <!--This can be looped twice with different placeholder n FormControl 
-          to reduce line of code-->
-          <div class="col-1-2">
-              <div class="form-control float-left">
-                  <dp-date-picker
-                  class="date-picker" 
-                  placeholder="Select Departure date" 
-                  #dayPicker 
-                  name="dateInput"
-                  value="dateInput"
-                  [formControl]="myForm.controls['dateInput']"
-                  disabled
-                  ></dp-date-picker>
-                  <div *ngIf="myForm.controls['dateInput'].hasError('required')  && myForm.controls['dateInput'].touched"  
-                  class="text-danger">[Date] is required</div>  
-              </div>
-          </div>
-          <div class="col-1-2" *ngIf="false">
-              <div class="form-control float-left" >
-                <dp-date-picker 
-                class="date-picker"
-                placeholder="Return date" 
-                #dayPicker
-                name="rdateInput"
-                disabled
-                ></dp-date-picker>
-              </div>
-          </div>
-          <div class="col-1-2">
+                <div class="form-control float-left">
+                    <input  
+                        placeholder="Destination City" 
+                        type="text"
+                        alphaOnly
+                        formControlName="destination"/>
+                    <div *ngIf="myForm.controls['destination'].errors?.required 
+                            && myForm.controls['destination'].touched"
+                            class="text-danger">[Destination] is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-1-2">
+                <div class="form-control float-left">
+                    <dp-date-picker
+                        class="date-picker" 
+                        placeholder="Departure date" 
+                        #dayPicker 
+                        formControlName="departureDate"
+                        disabled>
+                    </dp-date-picker>
+                    <div *ngIf="myForm.controls['departureDate'].errors?.required && myForm.controls['departureDate'].touched"  
+                        class="text-danger">[Departure Date] is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-1-2" *ngIf="!isOneWay">
                 <div class="form-control float-left" >
-                    <select style="width:100%;height:28px;">
+                    <dp-date-picker 
+                        class="date-picker"
+                        placeholder="Return date" 
+                        #returnDayPicker
+                        formControlName="returnDate"
+                        disabled>
+                    </dp-date-picker>
+                    <div *ngIf="myForm.controls['returnDate'].errors?.required && myForm.controls['returnDate'].touched"  
+                        class="text-danger">[Return Date] is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-1-2">
+                <div class="form-control float-left" >
+                    <!--for now count is uptu 3 only but number picker can 
+                        be used to select passenger count-->
+                    <select class="pSelect">
                         <option  disabled  selected>Passengers</option>
-                        <option *ngFor="let select of list" > {{ select }}</option>
+                        <option *ngFor="let select of list">{{ select }}</option>
                     </select>
                 </div>
             </div>
-          <div class="col-1-2">
-              <div class="form-control float-left">
-                  <button 
-                  class="btn btn-large btn-normal btn-responsive" 
-                  title="Provide search details"
-                  [disabled]="!myForm.valid">Search</button>
-              </div>
-          </div>
-      </form>
-  </div>
-  <div>
-  <div class="col-1-2">
-            <div class="form-control float-center">
-                    <label for="name">Refine flight search</label>
-                    <ion-range-slider 
-                    id="rangeSel"
-                    #sliderElement
-                    type="double"
-                    min="0"
-                    max="10000"
-                    from="0"
-                    from_min="0"
-                    from_max="9000"
-                    from_shadow="true"
-                    to="10000"
-                    to_min="1000"
-                    to_max="10000"
-                    to_shadow="true"
-                    grid="true"
-                    grid_num="10"
-                    prefix="Fare: "
-                    postfix=" INR"
-                    decorate_both="false" 
-                    (onUpdate)="update(flightSearchSlider, $event)"
-                    (onChange)="update(flightSearchSlider, $event)"
-                    (onFinish)="finish(flightSearchSlider, $event)"     
-                    ></ion-range-slider>
-              </div>
+        <div class="col-1-2">
+            <div class="form-control float-left">
+                <button 
+                    class="btn btn-large btn-normal btn-responsive" 
+                    title="Provide search details"
+                    [disabled]="!myForm.valid">Search
+                </button>
             </div>
+        </div>
+    </form>
+</div>
+<div class="col-1-2">
+    <div class="form-control float-center">
+        <label for="name">Refine flight search</label>
+        <ion-range-slider 
+            id="rangeSel"
+            #sliderElement
+            type="double"
+            min="0"
+            max="10000"
+            from="0"
+            from_min="0"
+            from_max="9000"
+            from_shadow="true"
+            to="10000"
+            to_min="1000"
+            to_max="10000"
+            to_shadow="true"
+            grid="true"
+            grid_num="10"
+            prefix="Fare: "
+            postfix=" INR"
+            decorate_both="false" 
+            (onUpdate)="update(flightSearchSlider, $event)"
+            (onChange)="update(flightSearchSlider, $event)"
+            (onFinish)="finish(flightSearchSlider, $event)">
+        </ion-range-slider>
     </div>
-  </tab>
-  <tab tabTitle="Return">
-    <div>
-     One way template will be reused...
-    </div>
-  </tab>
-</tabs>
+</div>
+

@@ -1,3 +1,7 @@
+/*  1. @mediaquery is not used for now.
+    2. using SAASS or LESS can enable reuse of repeatitive css
+*/
+
 .page-container {
     height: 100%;
     border:1px solid black;

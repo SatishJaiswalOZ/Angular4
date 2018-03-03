@@ -43,8 +43,8 @@ describe('AppComponent', () => {
 
     const  form: any = {
             from: 'goa',
-            to: 'delhi',
-            dateInput:"30-06-2018",
+            destination: 'delhi',
+            departureDate:"30-06-2018",
             filterRequested:false}
 
     app.onFlightSearchRequested(form);

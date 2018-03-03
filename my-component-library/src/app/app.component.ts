@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-
+//app specific.
 import { SearchService } from './app.component.service';
 import * as moment from 'moment';
-import { IfDetails,IfDetailsHeader } from './app.component.if-details';
+import { IfDetails, IfDetailsHeader } from './app.component.if-details';
+import { TabsContainer } from 'angular-tabs-component';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +15,15 @@ export class AppComponent {
   private fareSearchResults = [];
   private tempOriginalSearchResults = [];
   private searchResult:IfDetails;
-
+ 
   title = 'Flight Search Engine'; 
   flightsearchResult:IfDetails []=[];
-  currentSearchdetails:IfDetailsHeader={from:undefined,to:undefined,dateInput:undefined};
+  currentSearchdetails:IfDetailsHeader={
+    origin:undefined,
+    destination:undefined,
+    departureDate:undefined,
+    returnDate:undefined,
+    isOneWay:true};
   statusMessage:string
 
   constructor(private searchService: SearchService) {
@@ -40,10 +46,18 @@ export class AppComponent {
       this.getFareFilteredData(form);
     }
 
-    this.currentSearchdetails.from = form.from;
-    this.currentSearchdetails.to = form.to;
-    let searchDate: moment.Moment = moment(form.dateInput.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
-    this.currentSearchdetails.dateInput =searchDate.format();
+    this.currentSearchdetails.origin = form.origin;
+    this.currentSearchdetails.destination = form.destination;
+    this.currentSearchdetails.isOneWay=form.isOneWay;
+
+    //TODO:put these 2 lines in some utility.
+    let departureDate: moment.Moment = moment(form.departureDate.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
+    this.currentSearchdetails.departureDate =departureDate.format();
+    if(!form.isOneWay)
+    {
+      let returnDate: moment.Moment =moment(form.returnDate.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
+      this.currentSearchdetails.returnDate =returnDate.format();
+    }
   }
 
   
@@ -60,13 +74,20 @@ export class AppComponent {
           //data.filter(..) can also be used instead of loop
           for (let i = 0; i < data.length; i++) 
           {
-            //for now just to check.It will be replaced by actual queryString
-            let collectionDate: moment.Moment = moment(data[i].date);
-            let searchDate: moment.Moment = moment(form.dateInput.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
-            
-            if ((data[i].from.toLowerCase( ) == form.from.toLowerCase( )) && 
-            (data[i].to.toLowerCase( ) == form.to.toLowerCase( )) &&  
-            (searchDate.format() == collectionDate.format()))  {
+            //for now just to check.It will be replaced by actual queryString.
+            //Also, these conversion can be pushed to utility
+            let collectionDepartureDate: moment.Moment = moment(data[i].departDetails.departureDate);
+            let searchDepartureDate: moment.Moment = moment(form.departureDate.replace
+              (/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
+
+            let collectionReturnDate: moment.Moment = !form.isOneWay? moment(data[i].returnDetails.returnDate): undefined;
+            let searchReturnDate: moment.Moment =!form.isOneWay ? moment(form.returnDate.replace
+              (/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3")):undefined;
+
+            if ((data[i].departDetails.origin.toLowerCase( ) == form.origin.toLowerCase( )) && 
+            (data[i].departDetails.destination.toLowerCase( ) == form.destination.toLowerCase( )) &&  
+            (searchDepartureDate.format() == collectionDepartureDate.format()) &&
+            (form.isOneWay ? true: searchReturnDate.format()==collectionReturnDate.format()))  {
                 this.searchResult = data[i];
                 this.flightsearchResult.push(this.searchResult);
             }

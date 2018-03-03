@@ -1,38 +1,36 @@
-<!--This will further be poptimized to reuse template-->
-
-<div class="row fc rounded bg-info text-white">
+<div class="row fcMain rounded bg-info text-white">
     <div class="col fcInner">
         <div class="grid grid-pad">
-              <div class="col-1-2">
-                  <label for="name">{{flightDetails.fare |  currency:'INR'}}</label>
-              </div>
-              <div class="col-1-2">
-                  <label class="lblbg"  for="name">{{flightDetails.flightNum| uppercase}}</label>
-              </div>
-              <div class="col-1-2">
-                  <label class="lblsm" for="ft">{{flightDetails.from | uppercase}} > {{flightDetails.to| uppercase}}</label>
-              </div>
-              <div class="col-1-2">
-                  <label class="lblsm" for="dt">Depart : {{flightDetails.departureTime| uppercase}}</label>
-              </div>
-              <div class="col-1-2">
-                <label class="lblsm" for="at">Arrive : {{flightDetails.arrivalTime| uppercase}}</label>
-              </div>
-          </div>
-      </div>
-    <div class="col fcInner" *ngIf="false">
+                <div class="col-1-2">
+                    <label for="name">{{flightDetails.fare |  currency:'INR'}}</label>
+                </div>
+                <div class="col-1-2">
+                    <label class="lblbg"  for="name">{{flightDetails.departDetails.flightNum | uppercase}}</label>
+                </div>
+                <div class="col-1-2">
+                    <label class="lblsm" for="ft">{{flightDetails.departDetails.origin | uppercase}} > {{flightDetails.departDetails.destination | uppercase}}</label>
+                </div>
+                <div class="col-1-2">
+                    <label class="lblsm" for="dt">Depart : {{flightDetails.departDetails.departureTime| uppercase}}</label>
+                </div>
+                <div class="col-1-2">
+                    <label class="lblsm" for="at">Arrive : {{flightDetails.departDetails.arrivalTime| uppercase}}</label>
+                </div>
+            </div>
+        </div>
+    <div class="col fcInner" *ngIf="!isOneWay">
         <div class="grid grid-pad">
-            <div class="col-1-2 fn">
-                <label class="flightName"  for="name"></label>
+            <div class="col-1-2 lblReturn">
+                <label class="lblbg"  for="name">{{flightDetails.returnDetails.flightNum| uppercase}}</label>
             </div>
             <div class="col-1-2">
-                <label class="OrToDest" for="name"> </label>
+                <label class="lblsm" for="ft">{{flightDetails.departDetails.destination | uppercase}} > {{flightDetails.departDetails.origin | uppercase}}</label>
             </div>
             <div class="col-1-2">
-                <label class="OrToDest" for="name"></label>
+                <label class="lblsm" for="dt">Depart : {{flightDetails.returnDetails.departureTime| uppercase}}</label>
             </div>
             <div class="col-1-2">
-              <label class="OrToDest" for="name"></label>
+                <label class="lblsm" for="at">Arrive : {{flightDetails.returnDetails.arrivalTime| uppercase}}</label>
             </div>
         </div>
     </div>
@@ -45,5 +43,5 @@
                 <button class="btn btn-large btn-normal" title="flight booking">Book this flight</button>
             </div>
         </div>
-      </div>
-  </div>
+    </div>
+</div>

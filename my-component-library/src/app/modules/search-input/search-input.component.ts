@@ -1,7 +1,8 @@
-import {Component, OnInit, ViewChild,Output,EventEmitter } from '@angular/core';
-import {DatePickerComponent} from 'ng2-date-picker';
-import { FormBuilder, FormGroup,Validators  } from '@angular/forms';
-import {IonRangeSliderComponent} from "ng2-ion-range-slider";
+import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+//app specific.
+import { IonRangeSliderComponent } from "ng2-ion-range-slider";
+import { DatePickerComponent } from 'ng2-date-picker';
 
 @Component({
   selector: 'app-search-input',
@@ -11,12 +12,15 @@ import {IonRangeSliderComponent} from "ng2-ion-range-slider";
 })
 
 export class SearchInputComponent implements OnInit {
-  private inputElem: any;
-  myForm: FormGroup;  
 
-  @ViewChild('dayPicker') datePicker: DatePickerComponent;
   @ViewChild('sliderElement') sliderElement: IonRangeSliderComponent;
+  
+  private inputElem: any;
   private formData:any;
+
+  @Input()
+  isOneWay:boolean=false;
+  myForm: FormGroup;  
 
   list: any[] = ['1', '2', '3'];
   edit: any;
@@ -27,25 +31,21 @@ export class SearchInputComponent implements OnInit {
     onUpdate: undefined, 
     onFinish: undefined};
 
-  constructor(private fb: FormBuilder){  }
+  constructor(private fb: FormBuilder){}
 
   @Output()
   flightSearchInitiated:EventEmitter<any>=new EventEmitter<any>();
 
-  ngOnInit() {
-    this.myForm = this.fb.group({  
-      'from': ['', Validators.required],
-      'to': ['',Validators.required],
-      'dateInput':['',Validators.required]
-    }); 
-  }
-
-  open() {
-      this.datePicker.api.open();
-  }
-
-  close() {
-       this.datePicker.api.close();
+  ngOnInit() {        
+    let group = {  
+      'origin': ['', Validators.required],
+      'destination': ['',Validators.required],
+      'departureDate':['',Validators.required]
+    }
+    if(!this.isOneWay){
+      group['returnDate'] = ['', Validators.required];
+    }
+    this.myForm = this.fb.group(group);  
   }
 
   onSubmit(form: any): void {  
@@ -53,10 +53,12 @@ export class SearchInputComponent implements OnInit {
     console.log('you submitted value:', form);  
     //callback to parent component
      this.flightSearchInitiated.emit({
-       from:form.from,
-       to:form.to,
-       dateInput:form.dateInput,
-       filterRequested:false});
+       origin:form.origin,
+       destination:form.destination,
+       departureDate:form.departureDate,
+       returnDate:form.returnDate,
+       filterRequested:false,
+       isOneWay:this.isOneWay});
 
        this.resetFareFilterSlider("0", "10000")
   }
@@ -77,11 +79,13 @@ export class SearchInputComponent implements OnInit {
     console.log("FareSlider finished: From: " + 
     fareSlider.onUpdate.from + " To: "+ fareSlider.onUpdate.to );
     this.flightSearchInitiated.emit({
-      from:this.formData.from,
-      to:this.formData.to,
-      dateInput:this.formData.dateInput,
+      origin:this.formData.origin,
+      destination:this.formData.destination,
+      departureDate:this.formData.departureDate,
+      returnDate:this.formData.returnDate,
       fareFrom:fareSlider.onUpdate.from , 
       fareUpTo:fareSlider.onUpdate.to,
-      filterRequested:true });
+      filterRequested:true,
+      isOneWay:this.isOneWay });
   }
 }

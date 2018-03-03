@@ -1,7 +1,11 @@
+/*  1. @mediaquery is not used for now.
+    2. using SAASS or LESS can enable reuse of repeatitive css
+*/
+
 h1 {
     color: black;
   }
 
-  .header{
+.header{
     border:1px solid black;
   }

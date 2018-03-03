@@ -1,11 +1,15 @@
+/*  1. @mediaquery is not used for now.
+    2. using SAASS or LESS can enable reuse of repeatitive css
+*/
+
 .fcHeader{
     height:auto;
     padding: 20px;
     background-color: lightgrey;
 }
 .fcHeaderInner{
-  font-size:1.5em;
-  vertical-align: middle;
+    font-size:1.5em;
+    vertical-align: middle;
 }
 .fcHeaderInner2{
     font-size:.9em;

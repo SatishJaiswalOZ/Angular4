@@ -1,16 +1,16 @@
-.fc{
+/*  1. @mediaquery is not used for now.
+    2. using SAASS or LESS can enable reuse of repeatitive css
+*/
+
+.fcMain{
     height:auto;
     margin-top: 10px;
     margin-left: 1px;
-    margin-right: 1px;
-    
+    margin-right: 1px; 
 }
 .fcInner{
   font-size:1.5em;
   float: left;
-}
-.fn{
-    margin-top: 43px;
 }
 .lblsm{
     font-size:0.6em;
@@ -25,4 +25,7 @@
 .airlineLogo{
     width: 130px;
     height:130px;
+}
+.lblReturn{
+    margin-top: 45px;
 }

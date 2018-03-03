@@ -1,6 +1,7 @@
-import { Injectable ,OnInit} from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+//app specific.
 import { Observable } from 'rxjs/Observable';
-import {Http,Response} from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -11,7 +12,7 @@ import 'rxjs/add/Observable/throw';
 import { IfDetails } from './app.component.if-details';
 
 @Injectable()
-export class SearchService implements OnInit{
+export class SearchService{
   private baseUrl:string="http://localhost:7878/first";
 
   queryUrl: string = '?search=';
@@ -19,9 +20,6 @@ export class SearchService implements OnInit{
   searchTerm$ = new Subject<string>();
 
   constructor(private http:Http) { }
-
-  ngOnInit() {
-  }
 
   //TO OPTIMIZE THE LATENCY, INSTEAD OF WHOLE DATA, ONLY QUERY DATA SHOULD BE FETCH.
   //BELOW SERVICE DOES THE SAME BUT API REQUIRE SERVICE EXPOSURE WITH QUERYSTRING PARAMETER.
