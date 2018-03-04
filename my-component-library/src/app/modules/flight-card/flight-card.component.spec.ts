@@ -16,9 +16,9 @@ describe('FlightCardComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FlightCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  //fixture = TestBed.createComponent(FlightCardComponent);
+  // component = fixture.componentInstance;
+  //fixture.detectChanges();
   });
 
   it('should create', () => {
