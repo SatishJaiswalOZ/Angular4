@@ -47,6 +47,7 @@ Release Note:
 KNOWN ISSUES IN EXTERNAL PLUGINS:
 
 ** .ng2-datepicker plugin has size issue of it's Input type due to which it's not responsive. If deliberately style=\"width:100%\"  \n is placed at line 1637 of node_modules\ng2-date-picker then it works. I'll check this later to solve if app component level workaround can be done.
+**In reactive form, html level 'disabled' property shows warning.
 
 Sample JSON used for mocking. Please use "from" & "to" to search flights for now:
 
