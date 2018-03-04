@@ -21,20 +21,28 @@ To run the App:
 
 To get ready for production:
 
-1. ng build --prod --aot
+1. npm run-script build
 
 2. npm install http-server -g
 
-3. Run production build using http-server ./dist
+3. Run production build using: http-server ./dist
 
 4. Hit http://127.0.0.1:8080/ OR the url provided in the terminal of http-server
 
 
-Note: 
+Release Note: 
 
-1. Dev environment for now is limited to Chrome browser only. Not yet tested on other browsers.
+1. For next version release: A static server routinely returns index.html when it receives a request for http://www.xyz.com/. But it rejects http://www.xyz.com/a/b and returns a 404 - Not Found error unless it is configured to return index.html instead.
 
-2. Date picker has minor issue in responsive **
+2. Supports Chrome browser only.
+
+3. UI sections: Airlines logo (image) & "Book this flight"(Button) is just for dummy so not operational.
+
+4. UI testing has been covered moderately (for POC only).
+
+5. Mock API is for internal usage only.
+
+6. Date picker has minor issue in responsive **
 
 KNOWN ISSUES IN EXTERNAL PLUGINS:
 

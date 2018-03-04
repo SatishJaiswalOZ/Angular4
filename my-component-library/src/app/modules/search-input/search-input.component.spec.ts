@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TabModule } from 'angular-tabs-component';
 import { HttpModule } from '@angular/http';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 
@@ -20,7 +19,6 @@ describe('SearchInputComponent', () => {
       imports: [
         HttpModule,
         CommonModule,
-        TabModule,
         DpDatePickerModule,
         IonRangeSliderModule,
         FormsModule,

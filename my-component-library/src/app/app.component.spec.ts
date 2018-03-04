@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 // import our module
+import { TabModule } from 'angular-tabs-component';
 import { HeaderModule } from './modules/header/header.module';
 import { SearchInputModule } from './modules/search-input/search-input.module';
 import { FlightCardHeaderModule } from './modules/flight-card-header/flight-card-header.module';
@@ -20,7 +21,8 @@ describe('AppComponent', () => {
         HeaderModule,
         SearchInputModule,
         FlightCardHeaderModule,
-        FlightCardModule
+        FlightCardModule,
+        TabModule,
       ]
     }).compileComponents();
   }));
